@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/NetMaui.png" type="image/png">
 
-  <title>Mobile App Entwicklung, Lektion 01: Vorstellung, Einführung und Setup von Werkzeugen</title>
+  <title>Mobile App Entwicklung, Lektion 01: Einführung, Evaluation, und Einrichtung</title>
 
   <link rel=" stylesheet" href="dist/reset.css">
   <link rel="stylesheet" href="dist/reveal.css">
@@ -24,8 +24,40 @@
         <h1>Mobile App Entwicklung</h1>
         <h2>Lektion 1</h2>
         <p>
-          Vorstellung, Einführung und Setup von Werkzeugen
+          Einführung, Evaluation, und Einrichtung
         </p>
+      </section>
+
+      <section>
+        <h1>Übersicht Lektionen</h1>
+        <ol class="compact">
+          <li class="selected">Einführung, Evaluation, und Einrichtung</li>
+          <li>Aufsetzen und Einführung IDE mit Maui</li>
+          <li>IOC und Testing</li>
+          <li><code>async</code>, SQLite und HTTP Client</li>
+          <li><b>LKZ1</b>; MVVM, Bindings</li>
+          <li>Popupelementen (Dialogen) und Steuerelemente</li>
+          <li>Mobile Web und Hybrid-Apps</li>
+          <li><b>LK2</b>; Projektarbeit</li>
+          <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
+        </ol>
+      </section>
+
+      <section>
+        <h1>Was wollen wir heute erreichen?</h1>
+        <ul>
+          <li>Gegenseitig vorstellen</li>
+          <li>Kursmaterial herunterladen</li>
+          <li>Einführung in die Welt von Mobile-App Entwicklung</li>
+          <li>Frameworks anschauen und evaluieren</li>
+          <li>Maui einrichten
+            <ul>
+              <li>Visual Studio einrichten</li>
+              <li>Projekt auf GitHub einrichten</li>
+              <li>Gerät anschliessen und/oder Emulator aufsetzen</li>
+            </ul>
+          </li>
+        </ul>
       </section>
 
       <section>
@@ -72,12 +104,17 @@
         <p>Bitte stellt euch kurz vor:</p>
         <ul>
           <li>Name</li>
-          <li>Beruf &amp; Arbeitgeber</li>
-          <li>Vorkenntnisse / Erfahrung / Technologien</li>
-          <li>Erfahrung mit Mobile-App Entwicklung?</li>
-          <li>Motivation</li>
-          <li>Ziele für das Modul</li>
-          <li>Welches OS und Gerät (iOS/Android)?</li>
+          <li>Vorkenntnisse in Software Entwicklung?<ul>
+              <li>Welche Technologien?</li>
+              <li>Erfahrung mit Mobile-App Entwicklung?</li>
+              <li>Erfahrung mit Git?</li>
+            </ul>
+          </li>
+          <li>Motivation / Ziele für das Modul</li>
+          <li>Welches OS und Gerät?<ul>
+              <li>Z.B. Windows/Android</li>
+            </ul>
+          </li>
         </ul>
       </section>
 
@@ -179,18 +216,18 @@
             <th>Anteil</th>
           </tr>
           <tr>
-            <td>Prüfung (LK1)</td>
-            <td>03.06.2024</td>
+            <td>Prüfung (LZK1)</td>
+            <td>02.06.2024</td>
             <td>25%</td>
           </tr>
           <tr>
-            <td>Prüfung (LK2)</td>
-            <td>01.07.2024</td>
+            <td>Prüfung (LZK2)</td>
+            <td>30.06.2024</td>
             <td>25%</td>
           </tr>
           <tr>
             <td>Projekt (MLZ)</td>
-            <td>08.07.2024</td>
+            <td>07.07.2024</td>
             <td>50%</td>
           </tr>
         </table>
@@ -198,15 +235,12 @@
       </section>
 
       <section>
-        <h1>Prüfungen (LK1 &amp; LK2)</h1>
+        <h1>Prüfungen (LZK1 &amp; LZK2)</h1>
         <ul>
-          <li>Word Formular mit änderbaren Feldern<ul>
-              <li>Form könnte geändert werden (z.B. ein Beispiel ausbauen statt Multiple Choice)</li>
-            </ul>
-          </li>
-          <li>Wird am Anfang der Lektion zugeschickt</li>
-          <li>Eine Stunde Zeit</li>
-          <li>Digital auszufüllen und zurückzusenden</li>
+          <li>Git Repo</li>
+          <li>URL wird am Anfang der Lektion zugeschickt</li>
+          <li>1 Stunde Zeit</li>
+          <li>Ausführen, Kommitten, und Pushen</li>
         </ul>
       </section>
 
@@ -232,44 +266,8 @@
       </section>
 
       <section>
-        <h1>Fragen an euch</h1>
-        <ul>
-          <li>Was versteht ihr unter Mobile App Entwicklung?</li>
-          <li>Was versteht ihr unter Software-Entwicklung?</li>
-          <li>Wer habt schon Web Erfahrung? Welche? CSS/HTML, Framework?</li>
-          <li>Wer hat schon Entwicklungserfahrung? Welche?</li>
-          <li>Wer hat schon mit KI-Unterstützung gearbeitet?</li>
-          <li>Wie arbeitet man als Software-Entwickler?</li>
-          <li>Welche Erfahrungen habt ihr bereits?</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Das bisherige Curriculum</h2>
-
-        <div class="fifty-fifty-grid">
-          <ul>
-            <li>Visual Studio</li>
-            <li class="fragment">Git</li>
-            <li class="fragment">C#</li>
-            <li class="fragment">XAML</li>
-            <li class="fragment">MVVM</li>
-            <li class="fragment">View Bindings</li>
-          </ul>
-          <ul>
-            <li class="fragment">IOC / DI</li>
-            <li class="fragment">Automatisiertes Testing</li>
-            <li class="fragment">async</li>
-            <li class="fragment">REST API / HTTP Client</li>
-            <li class="fragment">JSON</li>
-            <li class="fragment">SQLite</li>
-          </ul>
-        </div>
-      </section>
-
-      <section>
         <h1>Kursmaterialien</h1>
-        <p>Die folgende Repos werden benutzt. Moodle werden wir nicht benutzen.</p>
+        <p>Statt Moodle setzen wir das folgende Repo ein.</p>
         <ul>
           <li>https://github.com/mvonballmo/APE_HFU</li>
           <li><a href="https://github.com/mvonballmo/APE_HFU">Alle Folien und Beispiele als Git Repo</a></li>
@@ -327,58 +325,42 @@
       </section>
 
       <section>
-        <h1>Das Curriculum</h1>
+        <h1>Fragen an euch</h1>
         <ul>
-          <li><b>2018:</b> Begann auf Englisch mit <i>Microsoft Xamarin</i></li>
-          <li><b>2021:</b> Wurde aktualisiert und modernisiert</li>
-          <li><b>2022:</b> Wurde ins Deutsche übersetzt</li>
-          <li><b>2023:</b> Neugestaltung; umsteigen von <i>Xamarin</i> auf <i>Maui</i>...</li>
-          <li><b>2024:</b> Evaluation von anderen Frameworks; für <i>Maui</i> entschieden...</li>
-          <li><b>2025:</b> Auf <i>Maui</i> setzen; Microsoft Tutorials einsetzen.</li>
+          <li>Was versteht ihr unter Mobile App Entwicklung?</li>
+          <li>Was versteht ihr unter Software-Entwicklung?</li>
+          <li>Wer habt schon Web Erfahrung? Welche? CSS/HTML, Framework?</li>
+          <li>Wer hat schon Entwicklungserfahrung? Welche?</li>
+          <li>Wer hat schon mit KI-Unterstützung gearbeitet?</li>
+          <li>Wie arbeitet man als Software-Entwickler?</li>
+          <li>Welche Erfahrungen habt ihr bereits?</li>
         </ul>
       </section>
 
       <section>
-        <h1>Neugestaltung? Warum?</h1>
-        <ul>
-          <li>Microsoft Xamarin wird nicht weiter entwickelt</li>
-          <li>Maui ist die neue Mobile-App Framework von Microsoft</li>
-          <li>Aber es gibt andere Frameworks...</li>
-        </ul>
-      </section>
+        <h2>Das bisherige Curriculum</h2>
 
-      <section>
-        <h1>So sah es letztes Jahr aus</h1>
-        <ol class="compact">
-          <li class="completed">Vorstellung, Einführung und Framework-Evaluation</li>
-          <li class="completed">Evaluation, Selektion und Aufsetzen eines Frameworks</li>
-          <li class="completed">IOC und Testing</li>
-          <li class="completed">Popupelementen (Dialogen)</li>
-          <li class="selected"><b>LK1</b>; Benachrichtigungen (Lokal/Push/Remote)</li>
-          <li>Datenbanken (SQLite); HTTP Client</li>
-          <li>Hybrid-Apps, Sicherheit &amp; Biometrie</li>
-          <li><b>LK2</b>; Projektarbeit</li>
-          <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
-
-          <li class="selected">Vorstellung, Einführung und Framework-Evaluation</li>
-          <li>IOC, Testing, Debugging</li>
-          <li>MVVM, Bindings, Controls, Dialogs, Styling</li>
-          <li>Datenbanken (SQLite); HTTP Client</li>
-          <li><b>LK1</b>; Benachrichtigungen (Lokal/Push/Remote)</li>
-          <li>Hybrid-Apps</li>
-          <li><b>LK2</b>; Sicherheit &amp; Biometrie</li>
-          <li>Projektarbeit</li>
-          <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
-        </ol>
-      </section>
-
-      <section>
-        <h1>Passt das noch?</h1>
         <div class="fifty-fifty-grid">
-          <img src="assets/okaaaay.jpg">
-          <div>
-            <div style="margin-top: 5em" class="fragment">Wir werden es zusammen herausfinden...</div>
-          </div>
+          <ul>
+            <li>Visual Studio</li>
+            <li class="fragment">Git</li>
+            <li class="fragment">C#</li>
+            <li class="fragment">NuGet</li>
+            <li class="fragment">.NET</li>
+            <li class="fragment">Workloads</li>
+            <li class="fragment">Emulator</li>
+            <li class="fragment">XAML</li>
+          </ul>
+          <ul>
+            <li class="fragment">MVVM</li>
+            <li class="fragment">View Bindings</li>
+            <li class="fragment">IOC / DI</li>
+            <li class="fragment">Automatisiertes Testing</li>
+            <li class="fragment">async</li>
+            <li class="fragment">REST API / HTTP Client</li>
+            <li class="fragment">JSON</li>
+            <li class="fragment">SQLite</li>
+          </ul>
         </div>
       </section>
 
@@ -411,6 +393,28 @@
       </section>
 
       <section>
+        <h1>Das Curriculum</h1>
+        <ul>
+          <li><b>2018:</b> Begann auf Englisch mit <i>Microsoft Xamarin</i></li>
+          <li><b>2021:</b> Wurde aktualisiert und modernisiert</li>
+          <li><b>2022:</b> Wurde ins Deutsche übersetzt</li>
+          <li><b>2023:</b> Neugestaltung; umsteigen von <i>Xamarin</i> auf <i>Maui</i>...</li>
+          <li><b>2024:</b> Evaluation von anderen Frameworks; für <i>Maui</i> entschieden...</li>
+          <li><b>2025:</b> Auf <i>Maui</i> setzen; mehr Microsoft Tutorials einsetzen.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Neugestaltung? Warum?</h1>
+        <ul>
+          <li>Microsoft Xamarin wird nicht weiter entwickelt</li>
+          <li>Maui ist das neue Mobile-App Framework von Microsoft</li>
+          <li>Maui Wird jedes Jahr aktualisiert und ausgebaut</li>
+          <li>Aber es gibt andere Frameworks...</li>
+        </ul>
+      </section>
+
+      <section>
         <h1>Wir wird evaluiert?</h1>
         <ul>
           <li>Erste Runde Evaluationskriterien</li>
@@ -420,27 +424,6 @@
           <li>Evaluationsmatrix erstellen</li>
           <li>Produkt wählen</li>
         </ul>
-      </section>
-
-      <section>
-        <h1>Gruppenarbeit</h1>
-        <div class="seventy-thirty-grid">
-          <div>
-            <ul>
-              <li>In Gruppen aufteilen oder Einzeln arbeiten</li>
-              <li>Evaluationskriterien
-                <ul>
-                  <li>Finden</li>
-                  <li>Präsentieren</li>
-                  <li>List erfassen</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <img src="assets/cog-wheels.png">
-          </div>
-        </div>
       </section>
 
       <section>
@@ -463,26 +446,6 @@
               <li>Lock-in?</li>
               <li>Wird weiter entwickelt?</li>
             </ul>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <h1>Gruppenarbeit</h1>
-        <div class="seventy-thirty-grid">
-          <div>
-            <ul>
-              <li>In Gruppen aufteilen oder Einzeln arbeiten</li>
-              <li>Produkten/Frameworks
-                <ul>
-                  <li>Finden</li>
-                  <li>Liste Erfassen</li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <img src="assets/cog-wheels.png">
           </div>
         </div>
       </section>
@@ -520,24 +483,122 @@
       </section>
 
       <section>
-        <h1>Gruppenarbeit</h1>
+        <h2>Checkliste</h2>
+        <div class="seventy-thirty-grid">
+          <div>
+            <p>Wir haben:</p>
+            <ul>
+              <li><em>Evaluationskriterien</em> festgelegt</li>
+              <li><em>Kandidaten</em> ausgesucht</li>
+              <li>eine <em>Evaluationsmatrix</em> erfasst und teilweise ausgefüllt</li>
+            </ul>
+          </div>
+          <img src="assets/checklist.png">
+        </div>
+      </section>
+
+      <section>
+        <h2>Nächste Schritte</h2>
         <div class="seventy-thirty-grid">
           <div>
             <ul>
-              <li>In Gruppen aufteilen oder Einzeln arbeiten</li>
-              <li>Evaluationsmatrix
-                <ul>
-                  <li>Erstellen</li>
-                  <li>Auswerten</li>
-                  <li>Selektion machen</li>
-                </ul>
-              </li>
+              <li>Kandidaten installieren und testen</li>
+              <li>Installation erfolgreich?</li>
+              <li>IDE testen (debug/"Hot Reload")?</li>
+              <li>Emulatoren integriert?</li>
             </ul>
           </div>
-          <div>
-            <img src="assets/cog-wheels.png">
-          </div>
+          <img src="assets/cog-wheels.png">
         </div>
+      </section>
+
+      <section>
+        <h2>Evaluierte Kandidaten</h2>
+        <ul>
+          <li><a href="https://www.embarcadero.com/products/delphi/starter">Delphi</a></li>
+          <li><a href="https://platform.uno/docs/articles/get-started-vs-2022.html">Uno</a></li>
+          <li><a href="https://docs.avaloniaui.net/docs/getting-started">Avalonia</a></li>
+          <li><a href="https://dotnet.microsoft.com/en-us/apps/xamarin">Xamarin</a></li>
+          <li><a href="https://reactnative.dev/docs/environment-setup?guide=quickstart">ReactNative</a></li>
+          <li><a href="https://docs.flutter.dev/get-started/install/">Flutter</a></li>
+          <li><a href="https://learn.microsoft.com/en-us/dotnet/maui/">Maui</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Allgemeine Eindrücke</h2>
+        <ul>
+          <li>Alle Umgebungen benötigten mehrere zusätzliche GBs diverse SDKs, Vorlagen, Emulatoren, usw.</li>
+          <li>Mit gewissen Produkten konnte man effizient starten und entwickeln</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://www.embarcadero.com/products/delphi/starter">Delphi</a></h2>
+        <ul>
+          <li>Abschreckende Lizenzbedingungen</li>
+          <li>⛔️ Ab 5'000.- Firmeneinkommen wird eine kommerzielle Lizenz nötig</li>
+          <li>⛔️ IDE geht nur unter Windows</li>
+          <li>⛔️ Evaluation abgebrochen</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://platform.uno/docs/articles/get-started-vs-2022.html">Uno</a></h2>
+        <ul>
+          <li>Musste viel installieren</li>
+          <li>⛔️ Am Schluss fehlte trotzdem noch "GenerateXamlTask"</li>
+          <li>⛔️ Evaluation abgebrochen</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://docs.avaloniaui.net/docs/getting-started">Avalonia</a></h2>
+        <ul>
+          <li>Ging relativ einfach</li>
+          <li>Bietet nicht so viel</li>
+          <li>⚠️ Nicht so klar wie man iOS oder Android als Target setzen kann</li>
+          <li>⛔️ Kein "Hot Reload" eingeschaltet</li>
+          <li>⛔️ Evaluation abgebrochen</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://docs.flutter.dev/get-started/install/macos">Xamarin</a></h2>
+        <ul>
+          <li>Ging auf Anhieb aus Visual Studio</li>
+          <li>⚠️ Unverändert gegenüber letztes Jahr</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://docs.flutter.dev/get-started/install/macos">ReactNative</a></h2>
+        <ul>
+          <li>Laufend mit nur wenig Fehlern</li>
+          <li>✅ "Hot-Reload" ging sofort auf iOS</li>
+          <li>⚠️ Lernkurve nicht ganz so flach, auch wenn man bereits React-Entwickler ist</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://docs.flutter.dev/get-started/install/">Flutter</a></h2>
+        <ul>
+          <li>⚠️ Verwirrende Einführung; zu viele Möglichkeiten</li>
+          <li>⛔️ Anleitung war nicht ganz korrekt</li>
+          <li>⛔️ Neues Projekt Wizard ging nicht auf Anhieb</li>
+          <li>⛔️ Build ging nie vorwärts; einfache App konnte nicht ausgeführt werden</li>
+          <li>⚠️ Ging endlich vorwärts; Target-Liste instabil</li>
+          <li>✅ "Hot-Reload" ging auf alle Plattformen gut</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2><a href="https://learn.microsoft.com/en-us/dotnet/maui/">Maui</a></h2>
+        <ul>
+          <li>✅ Ging auf Anhieb aus Visual Studio</li>
+          <li>✅ Mac, iOS und Android waren sehr leicht auszuführen</li>
+          <li>✅ "Hot-Reload" ging sofort auf alle Plattformen</li>
+        </ul>
       </section>
 
       <section>
