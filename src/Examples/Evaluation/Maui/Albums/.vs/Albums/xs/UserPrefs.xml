@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{201F640C-366C-40CD-80AF-FE7DD9D458A6}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MainPage.xaml.cs">
+    <Files>
+      <File FileName="MainPage.xaml" />
+      <File FileName="MainPage.xaml.cs" Line="7" Column="17" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Albums" expanded="True">
+            <Node name="Albums" expanded="True">
+              <Node name="MainPage.xaml" expanded="True">
+                <Node name="MainPage.xaml.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Albums PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MultiItemStartupConfigurations />
+</Properties>

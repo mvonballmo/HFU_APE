@@ -1,0 +1,46 @@
+﻿<Properties StartupConfiguration="{4D491041-9C8D-4068-A194-CBBE73C7534C}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <Debugger.DebugSourceFolders>
+    <String>/Users/marco/Library/Caches/VisualStudio/17.0/Symbols/mono/corefx/c4eeab9fc2faa0195a812e552cd73ee298d39386</String>
+  </Debugger.DebugSourceFolders>
+  <MonoDevelop.MonoDroid LastDeploySdkVersion="12.3.99.95" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Albums.Android PreferredExecutionTarget="Android.pixel_5_-_api_28" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/marco/Work/HFU/APE_Apps/Albums/Albums.Android/Services/FirebaseService.cs" relfile="Albums.Android/Services/FirebaseService.cs" line="21" column="1" />
+      <Breakpoint file="/Users/marco/Work/HFU/APE_Apps/Albums/Albums.Android/MainActivity.cs" relfile="Albums.Android/MainActivity.cs" line="56" column="1" />
+      <Breakpoint file="/Users/marco/Work/HFU/APE_Apps/Albums/Damir.Tests/UnitTest1.cs" relfile="Damir.Tests/UnitTest1.cs" line="22" column="1" />
+      <Breakpoint file="/Users/marco/Work/HFU/APE_Apps/Albums/Albums/Services/AlbumsWebService.cs" relfile="Albums/Services/AlbumsWebService.cs" line="35" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Albums/ViewModels/ListViewModelBase.cs">
+    <Files>
+      <File FileName="../../../../.nuget/packages/xamarin.essentials/1.7.3/readme.txt" />
+      <File FileName="Albums/Views/NewAlbumPage.xaml.cs" />
+      <File FileName="Albums/ViewModels/ListViewModelBase.cs" Line="10" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Albums" expanded="True">
+            <Node name="Albums">
+              <Node name="ViewModels" expanded="True">
+                <Node name="ListViewModelBase.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="NewAlbumPage.xaml" expanded="True" />
+              </Node>
+            </Node>
+            <Node name="Albums.Android">
+              <Node name="Properties" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_28" />
+</Properties>

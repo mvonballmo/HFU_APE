@@ -1,0 +1,26 @@
+﻿<Properties StartupConfiguration="{180B271C-3B1A-4822-9842-11323428F2E1}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Albums.Android PreferredExecutionTarget="Android.pixel_5_-_api_28" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Albums/Albums.Android/MainActivity.cs">
+    <Files>
+      <File FileName="Albums/Albums.Android/MainActivity.cs" Line="3" Column="19" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Albums" expanded="True">
+            <Node name="Albums.Android" expanded="True">
+              <Node name="MainActivity.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.pixel_5_-_api_28" />
+</Properties>
