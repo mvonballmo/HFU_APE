@@ -38,7 +38,7 @@
           <li><b>LKZ1</b>; MVVM, Bindings</li>
           <li>Popupelementen (Dialogen) und Steuerelemente</li>
           <li>Mobile Web und Hybrid-Apps</li>
-          <li><b>LK2</b>; Projektarbeit</li>
+          <li><b>LKZ2</b>; Projektarbeit</li>
           <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
         </ol>
       </section>
@@ -265,13 +265,9 @@
         </ul>
       </section>
 
-      <section>
-        <h1>Kursmaterialien</h1>
-        <p>Statt Moodle setzen wir das folgende Repo ein.</p>
-        <ul>
-          <li>https://github.com/mvonballmo/APE_HFU</li>
-          <li><a href="https://github.com/mvonballmo/APE_HFU">Alle Folien und Beispiele als Git Repo</a></li>
-        </ul>
+      <section data-background="assets/YellowLeaves.jpeg" class="white-text">
+        <h1>Lektion 01</h1>
+        <h2>Ziele und Fragen</h2>
       </section>
 
       <section>
@@ -310,30 +306,30 @@
 
       <section class="compact">
         <h1>Prozesse</h1>
-        <ul>
-          <li>Was versteht ihr darunter?<ul>
-              <li>Reviews
-              <li>Testing
-              <li>Refactoring?
-              <li>Design/Architektur?
-              <li>Anforderungen
-              <li>Entwurf
-              <li>Work-item Tracking
-              <li>Planung</li>
-            </ul>
-        </ul>
+        <h2>Was versteht ihr darunter?</h2>
+        <div class="fifty-fifty-grid">
+          <ul>
+            <li class="fragment highlight-blue" data-fragment-index="1">Design/Architektur
+            <li class="fragment highlight-blue" data-fragment-index="1">Testing
+            <li class="fragment highlight-blue" data-fragment-index="1">Reviews
+            <li class="fragment highlight-blue" data-fragment-index="1">Refactoring
+          </ul>
+          <ul>
+            <li>Use cases / Anforderungen
+            <li>Entwurf
+            <li>Work-item Tracking
+            <li>Planung</li>
+          </ul>
+        </div>
       </section>
 
       <section>
         <h1>Fragen an euch</h1>
         <ul>
-          <li>Was versteht ihr unter Mobile App Entwicklung?</li>
-          <li>Was versteht ihr unter Software-Entwicklung?</li>
-          <li>Wer habt schon Web Erfahrung? Welche? CSS/HTML, Framework?</li>
-          <li>Wer hat schon Entwicklungserfahrung? Welche?</li>
+          <li>Was ist für euch Mobile App Entwicklung?</li>
+          <li>was ist für euch Software-Entwicklung?</li>
           <li>Wer hat schon mit KI-Unterstützung gearbeitet?</li>
           <li>Wie arbeitet man als Software-Entwickler?</li>
-          <li>Welche Erfahrungen habt ihr bereits?</li>
         </ul>
       </section>
 
@@ -380,16 +376,9 @@
         </ul>
       </section>
 
-      <section>
-        <h1>Fragen?</h1>
-        <div class="fifty-fifty-grid">
-          <img src="assets/okaaaay.jpg">
-        </div>
-      </section>
-
       <section data-background="assets/YellowLeaves.jpeg" class="white-text">
         <h1>Lektion 01</h1>
-        <h2>Evaluation Framework</h2>
+        <h2>Curriculum</h2>
       </section>
 
       <section>
@@ -412,6 +401,18 @@
           <li>Maui Wird jedes Jahr aktualisiert und ausgebaut</li>
           <li>Aber es gibt andere Frameworks...</li>
         </ul>
+      </section>
+
+      <section>
+        <h1>Fragen?</h1>
+        <div class="fifty-fifty-grid">
+          <img src="assets/okaaaay.jpg">
+        </div>
+      </section>
+
+      <section data-background="assets/YellowLeaves.jpeg" class="white-text">
+        <h1>Lektion 01</h1>
+        <h2>Evaluation Framework</h2>
       </section>
 
       <section>
@@ -513,7 +514,7 @@
       </section>
 
       <section>
-        <h2>Evaluierte Kandidaten</h2>
+        <h2>Evaluierte Kandidaten (2023)</h2>
         <ul>
           <li><a href="https://www.embarcadero.com/products/delphi/starter">Delphi</a></li>
           <li><a href="https://platform.uno/docs/articles/get-started-vs-2022.html">Uno</a></li>
@@ -606,6 +607,170 @@
         <div class="fifty-fifty-grid">
           <img src="assets/okaaaay.jpg">
         </div>
+      </section>
+
+      <section data-background="assets/YellowLeaves.jpeg" class="white-text">
+        <h1>Lektion 01</h1>
+        <h2>Alles einrichten!</h2>
+      </section>
+
+      <section data-background="assets/Rusty_tools_dimmed.jpg">
+        <h1>Was benötigen wir?</h1>
+        <ul>
+          <li>Source-Kontrolle: <a href="https://git-scm.com/">Git</a> (mit <a href="https://www.syntevo.com/smartgit/">SmartGit</a> GUI)</li>
+          <li>Online Code Repo: <a href="https://github.com/">GitHub</a></li>
+          <li>IDE: <a href="https://visualstudio.microsoft.com/vs/community/">Visual Studio</a></li>
+          <li>Laufzeitumgebung: <a href="https://dotnet.microsoft.com/">.NET</a>/<a href="https://learn.microsoft.com/en-us/dotnet/maui/">Maui</a></li>
+          <li>Package Manager: <a href="https://www.nuget.org/">NuGet</a></li>
+          <li>Testing Framework: <a href="https://nunit.org/">nUnit</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>GitHub Einrichten</h1>
+        <ul>
+          <li>Konto auf <a href="https://github.com/">GitHub</a> erstellen</li>
+          <li>Github Repository erstellen (z.B. "HFU_APE_app")
+            <ul>
+              <li><em>Entweder</em> veröffentlichen</li>
+              <li><em>Oder</em> mich (<b>mvonballmo</b>) einladen</li>
+            </ul>
+          </li>
+          <li><a href="https://github.com/mvonballmo/APE_Docs">Docs</a> und <a href="https://github.com/mvonballmo/APE_Apps">Apps</a> merken (entweder mit "Watch" oder "⭐️")</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="seventy-thirty-grid">
+          <div>
+            <h1>Wo steht ihr?</h1>
+            <ul>
+              <li><em>GitHub</em> ist eingerichtet</li>
+              <li><em>GitHub</em> Projekt ist aufgesetzt</li>
+            </ul>
+          </div>
+          <img src="assets/checklist.png">
+        </div>
+      </section>
+
+      <section>
+        <div class="seventy-thirty-grid">
+          <div>
+            <h1>Einführung Git</h1>
+            <ul>
+              <li>Pull vs. Fetch</li>
+              <li>Push vs. Commit</li>
+              <li>Local vs. Remote</li>
+              <li>Merge vs. Rebase</li>
+              <li>Working Tree vs. Stage vs. Stash</li>
+            </ul>
+          </div>
+          <img src="assets/demo.png">
+        </div>
+      </section>
+
+      <section>
+        <h1>Fragen?</h1>
+        <div class="fifty-fifty-grid">
+          <img src="assets/okaaaay.jpg">
+        </div>
+      </section>
+
+      <section>
+        <h1>SmartGit</h1>
+        <ul>
+          <li>Gratis für nicht kommerzielle Zwecke</li>
+          <li>GUI für Git
+            <ul>
+              <li>Git kann man auch mit VSC, WebStorm oder Kommandozeile benutzen</li>
+              <li>SmartGit ist <em>besser</em></li>
+            </ul>
+          </li>
+          <li><a href="https://www.syntevo.com/smartgit/download/">Herunterladen</a> und installieren</li>
+          <li>Ausführen</li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>SmartGit Lizenz</h1>
+        <p>Letzte Option wählen und bestätigen.</p>
+        <img src="assets/Lesson01/smartgit_install_license.png" class="screenshot">
+      </section>
+
+      <section>
+        <h1>Kursmaterialien</h1>
+        <ul>
+          <li>Statt Moodle setzen wir das folgende Repo ein.
+            <ul>
+              <li><a href="https://github.com/mvonballmo/APE_HFU">https://github.com/mvonballmo/HFU_APE.git</a>
+              <li>Beinhaltet alle Folien und Beispiele als Git Repo.</li>
+            </ul>
+          </li>
+          <li>Microsoft Learn:
+            <ul>
+              <li><a href="https://dotnet.microsoft.com/en-us/learn/maui">.NET MAUI Home Page</a></li>
+              <li><a href="https://dotnet.microsoft.com/en-us/learn/maui/first-app-tutorial/intro">.NET MAUI Tutorial: Quick Start</a> (~10m + Download/Install)</li>
+              <li><a href="https://www.youtube.com/watch?v=Hh279ES_FNQ&list=PLdo4fOcmZ0oUBAdL2NwBpDs32zwGqb9DY">.NET MAUI Beginner Videos</a> (8 videos = ~90m)</li>
+              <li><a href="https://learn.microsoft.com/en-us/training/paths/build-apps-with-dotnet-maui/?WT.mc_id=dotnet-35129-website">.NET MAUI Learning Courses</a> (~7h)</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Repo(s) Herunterladen</h1>
+        <ul class="compact">
+          <li>In <em>SmartGit</em>, <code>Repository/Clone</code> selektieren und das URL eingeben</li>
+          <li>In <em>SmartGit</em>, <code>Repository/Clone</code> selektieren, GitHub als <em>Hosting Provider</em> einrichten, und dein eigenes Projekt selektieren</li>
+        </ul>
+      </section>
+
+      <section>
+        <div class="seventy-thirty-grid">
+          <div>
+            <h1>Wo steht ihr?</h1>
+            <ul>
+              <li class="done"><em>GitHub</em> ist eingerichtet</li>
+              <li class="done"><em>GitHub</em> Projekt ist aufgesetzt</li>
+              <li><em>SmartGit</em> ist eingerichtet</li>
+              <li><code>APE_HFU</code> Repository sind bei euch lokal verfügbar <strong>und im File Explorer zu finden</strong></li>
+            </ul>
+          </div>
+          <img src="assets/checklist.png">
+        </div>
+      </section>
+
+      <section>
+        <h1>IDE Aufsetzen</h1>
+        <ul>
+          <li>OS und Zielgerät feststellen</li>
+          <li>Visual Studio 2022 installieren</li>
+          <li>Workloads installieren</li>
+          <li>Emulator (Android) oder Simulator (iOS) einrichten</li>
+          <li>Optional: <a href="https://docs.microsoft.com/xamarin/android/get-started/installation/set-up-device-for-development">Einrichten eines Geräts für die Entwicklung und Debugging</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h1>Wo steht ihr?</h1>
+        <div class="seventy-thirty-grid">
+          <div>
+            <ul>
+              <li class="done"><em>GitHub</em> ist eingerichtet</li>
+              <li class="done"><em>GitHub</em> Projekt ist aufgesetzt</li>
+              <li class="done"><em>SmartGit</em> ist eingerichtet</li>
+              <li class="done">"app" und "doc" Repositories sind lokal verfügbar</li>
+              <li><em>Visual Studio</em> ist installiert</li>
+              <li>Ein Emulator ist eingerichtet</li>
+            </ul>
+          </div>
+          <img src="assets/checklist.png">
+        </div>
+      </section>
+
+      <section>
+        <h1>Wir sind bereit!</h1>
+        <img src="assets/its_so_beautiful.png">
       </section>
 
     </div>
