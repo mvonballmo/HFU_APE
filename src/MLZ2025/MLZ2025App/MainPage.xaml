@@ -19,27 +19,24 @@
 
         <Entry Placeholder="Enter task"
                Grid.Row="1"
-               Text="{Binding Text }"/>
+               Text="{Binding Text }" />
         <Button Text="Add"
+                Command="{Binding AddCommand}"
                 Grid.Row="1"
                 Grid.Column="1" />
 
-        <CollectionView Grid.Row="2" Grid.ColumnSpan="2">
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Apples</x:String>
-                    <x:String>Bananas</x:String>
-                    <x:String>Oranges</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
-
+        <CollectionView Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        ItemsSource="{Binding Items}">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
                                 <SwipeItem Text="Delete"
-                                           BackgroundColor="Red" />
+                                           BackgroundColor="Red"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=DeleteCommand}"
+                                           CommandParameter="{Binding .}" />
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <Grid Padding="0,5">
@@ -47,7 +44,8 @@
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="10" />
                                 </Border.StrokeShape>
-                                <Label Text="{Binding .}" FontSize="24" />
+                                <Label Text="{Binding .}"
+                                       FontSize="24" />
                             </Border>
                         </Grid>
                     </SwipeView>
