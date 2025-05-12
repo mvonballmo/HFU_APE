@@ -7,6 +7,14 @@ namespace MLZ2025.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
+    private readonly IConnectivity _connectivity;
+
+    public MainViewModel(IConnectivity connectivity)
+    {
+        _connectivity = connectivity;
+    }
+
+    // TODO Use a custom object instead.
     [ObservableProperty] private ObservableCollection<string> _items =
     [
         "Apples",
@@ -17,7 +25,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _text = "Something";
 
     [RelayCommand]
-    private void Add()
+    private async Task Add()
     {
         // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(Text))
@@ -27,6 +35,12 @@ public partial class MainViewModel : ObservableObject
             Debug.WriteLine("Text is empty");
 
             return;
+        }
+
+        if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            // TODO extract the dialog to a service.
+            await Shell.Current.DisplayAlert("No Internet", "Please check your internet connection.", "OK");
         }
 
         Items.Add(Text);
