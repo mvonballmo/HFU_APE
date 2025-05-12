@@ -2,7 +2,9 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MLZ2025.MainPage">
+             x:Class="MLZ2025.MainPage"
+             xmlns:viewModel="clr-namespace:MLZ2025.ViewModel"
+             x:DataType="viewModel:MainViewModel">
 
     <Grid RowDefinitions="100, Auto, *"
           ColumnDefinitions=".75*, .25*"
@@ -15,7 +17,9 @@
             Source="dotnet_bot.png"
             BackgroundColor="Orange" />
 
-        <Entry Placeholder="Enter task" Grid.Row="1" />
+        <Entry Placeholder="Enter task"
+               Grid.Row="1"
+               Text="{Binding Text }"/>
         <Button Text="Add"
                 Grid.Row="1"
                 Grid.Column="1" />
@@ -39,7 +43,10 @@
                             </SwipeItems>
                         </SwipeView.RightItems>
                         <Grid Padding="0,5">
-                            <Border Padding="10" >
+                            <Border Padding="10">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="10" />
+                                </Border.StrokeShape>
                                 <Label Text="{Binding .}" FontSize="24" />
                             </Border>
                         </Grid>
