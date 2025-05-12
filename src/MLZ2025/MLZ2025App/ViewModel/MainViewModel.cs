@@ -17,7 +17,7 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _text = "Something";
 
     [RelayCommand]
-    void Add()
+    private void Add()
     {
         // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(Text))
@@ -34,7 +34,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    void Delete(string item)
+    private void Delete(string item)
     {
         // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(item))
@@ -50,5 +50,22 @@ public partial class MainViewModel : ObservableObject
         {
             Debug.WriteLine($"Cannot remove {item} because it is not in the list.");
         }
+    }
+
+    [RelayCommand]
+    private async Task Select(string item)
+    {
+        // TODO Show a message instead.
+        if (string.IsNullOrWhiteSpace(item))
+        {
+            // TODO Use a logger instead.
+
+            Debug.WriteLine("Text is empty");
+
+            return;
+        }
+
+        // TODO Use the dictionary instead.
+        await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
     }
 }
