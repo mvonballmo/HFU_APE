@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-using MLZ2025.ViewModel;
+using MLZ2025.Core.Services;
+using MLZ2025.Core.ViewModel;
 
 namespace MLZ2025;
 

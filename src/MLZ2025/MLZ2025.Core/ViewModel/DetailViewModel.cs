@@ -1,7 +1,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 
-namespace MLZ2025.ViewModel;
+namespace MLZ2025.Core.ViewModel;
 
 [QueryProperty(nameof(Text), nameof(Text))]
 public partial class DetailViewModel : ObservableObject

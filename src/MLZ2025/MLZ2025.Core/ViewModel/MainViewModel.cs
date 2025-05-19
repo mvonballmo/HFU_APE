@@ -2,8 +2,11 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Networking;
+using MLZ2025.Core.Services;
 
-namespace MLZ2025.ViewModel;
+namespace MLZ2025.Core.ViewModel;
 
 public partial class MainViewModel : ObservableObject
 {
