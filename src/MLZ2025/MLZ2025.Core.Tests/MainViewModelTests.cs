@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Networking;
-using MLZ2025.Core.Services;
-using MLZ2025.Core.ViewModel;
+﻿using MLZ2025.Core.ViewModel;
 
 namespace MLZ2025.Core.Tests;
 
@@ -24,6 +22,19 @@ public class MainViewModelTests : TestsBase
         Assert.That(_testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
     }
 
+    [Test]
+    public void TestCannotAddWithoutInternet()
+    {
+        var serviceProvider = CreateServiceProvider();
+        var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+        _testConnectivity.NetworkAccess = NetworkAccess.None;
+        viewModel.Text = "Foo";
+
+        viewModel.AddCommand.Execute(null);
+
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo("No Internet. Please check your internet connection."));
+    }
+
     [TestCase("")]
     [TestCase(" ")]
     [TestCase("\t")]
@@ -35,9 +46,8 @@ public class MainViewModelTests : TestsBase
     {
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
-        viewModel.Text = text;
 
-        viewModel.SelectCommand.Execute(null);
+        viewModel.SelectCommand.Execute(text);
 
         Assert.That(_testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
     }
@@ -53,11 +63,38 @@ public class MainViewModelTests : TestsBase
     {
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
-        viewModel.Text = text;
 
-        viewModel.DeleteCommand.Execute(null);
+        viewModel.DeleteCommand.Execute(text);
 
         Assert.That(_testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
+    }
+
+    [Test]
+    public void TestCannotDeleteWithoutInternet()
+    {
+        var serviceProvider = CreateServiceProvider();
+        var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+        _testConnectivity.NetworkAccess = NetworkAccess.None;
+
+        var item = viewModel.Items.Last();
+
+        viewModel.DeleteCommand.Execute(item);
+
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo("No Internet. Please check your internet connection."));
+    }
+
+    [Test]
+    public void TestCannotSelectWithoutInternet()
+    {
+        var serviceProvider = CreateServiceProvider();
+        var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+        _testConnectivity.NetworkAccess = NetworkAccess.None;
+
+        var item = viewModel.Items.Last();
+
+        viewModel.SelectCommand.Execute(item);
+
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo("No Internet. Please check your internet connection."));
     }
 
     [Test]

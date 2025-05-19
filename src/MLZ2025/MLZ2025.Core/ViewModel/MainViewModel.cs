@@ -57,6 +57,7 @@ public partial class MainViewModel : ObservableObject
         if (await ValidateText(item))
         {
             // TODO Use the dictionary instead.
+            // Figure out how to test the Shell <https://software-engineering-corner.zuehlke.com/how-to-test-a-net-maui-app-part-1#heading-testing-of-a-view-model>
             await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
         }
     }
@@ -65,8 +66,7 @@ public partial class MainViewModel : ObservableObject
     {
         if (_connectivity.NetworkAccess != NetworkAccess.Internet)
         {
-            // TODO extract the dialog to a service.
-            await Shell.Current.DisplayAlert("No Internet", "Please check your internet connection.", "OK");
+            await _dialogService.ShowErrorMessage("No Internet. Please check your internet connection.");
 
             return false;
         }

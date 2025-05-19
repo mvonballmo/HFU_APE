@@ -5,13 +5,17 @@ namespace MLZ2025.Core.Tests;
 public class TestsBase
 {
     protected readonly TestDialogService _testDialogService = new();
+    protected readonly TestConnectivity _testConnectivity = new();
 
     protected ServiceProvider CreateServiceProvider()
     {
+        _testConnectivity.NetworkAccess = NetworkAccess.Internet;
+        _testDialogService.LastMessage = string.Empty;
+
         return new ServiceCollection()
             .AddCoreServices()
             .AddSingleton<IDialogService>(_testDialogService)
-            .AddSingleton<IConnectivity, TestConnectivity>()
+            .AddSingleton<IConnectivity>(_testConnectivity)
             .BuildServiceProvider();
     }
 
@@ -24,12 +28,13 @@ public class TestsBase
             return Task.CompletedTask;
         }
 
-        public string LastMessage { get; private set; } = string.Empty;
+        public string LastMessage { get; set; } = string.Empty;
     }
 
-    private class TestConnectivity : IConnectivity
+    protected class TestConnectivity : IConnectivity
     {
-        public NetworkAccess NetworkAccess => NetworkAccess.Internet;
+        public NetworkAccess NetworkAccess { get; set; } = NetworkAccess.Internet;
+
         public event EventHandler<ConnectivityChangedEventArgs>? ConnectivityChanged;
 
         public IEnumerable<ConnectionProfile> ConnectionProfiles => new List<ConnectionProfile>
