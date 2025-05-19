@@ -9,11 +9,14 @@ public class DialogServiceTests
     [Test]
     public void TestCannotAddEmptyText()
     {
-        var testDialogService = new TestDialogService();
-        var viewModel = new MainViewModel(Connectivity.Current, testDialogService)
-        {
-            Text = ""
-        };
+        var serviceProvider = new ServiceCollection()
+            .AddCoreServices()
+            .AddSingleton<IDialogService, TestDialogService>()
+            .BuildServiceProvider();
+        
+        var testDialogService = (TestDialogService)serviceProvider.GetRequiredService<IDialogService>();
+        var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+        viewModel.Text = "";
 
         viewModel.AddCommand.Execute(null);
 
