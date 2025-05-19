@@ -6,8 +6,14 @@ namespace MLZ2025.Core.Tests;
 
 public class DialogServiceTests
 {
-    [Test]
-    public void TestCannotAddEmptyText()
+    [TestCase("")]
+    [TestCase(" ")]
+    [TestCase("\t")]
+    [TestCase("\r")]
+    [TestCase("   ")]
+    [TestCase(null)]
+    [TestCase("\n")]
+    public void TestCannotAddEmptyText(string? text)
     {
         var testDialogService = new TestDialogService();
         var serviceProvider = new ServiceCollection()
@@ -16,7 +22,7 @@ public class DialogServiceTests
             .BuildServiceProvider();
 
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
-        viewModel.Text = "";
+        viewModel.Text = text;
 
         viewModel.AddCommand.Execute(null);
 
