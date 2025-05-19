@@ -2,8 +2,6 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Networking;
 using MLZ2025.Core.Services;
 
 namespace MLZ2025.Core.ViewModel;
@@ -32,61 +30,58 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task Add()
     {
-        if (string.IsNullOrWhiteSpace(Text))
+        var text = Text;
+
+        if (await ValidateText(text))
         {
-            await ShowEmptyTextErrorMessage();
-
-            // TODO Use a logger instead.
-
-            Debug.WriteLine("Text is empty");
-
-            return;
+            Items.Add(text);
+            Text = "";
         }
-
-        if (_connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            // TODO extract the dialog to a service.
-            await Shell.Current.DisplayAlert("No Internet", "Please check your internet connection.", "OK");
-        }
-
-        Items.Add(Text);
-        Text = "";
     }
 
     [RelayCommand]
     private async Task Delete(string item)
     {
-        // TODO Show a message instead.
-        if (string.IsNullOrWhiteSpace(item))
+        if (await ValidateText(item))
         {
-            await ShowEmptyTextErrorMessage();
-
-            Debug.WriteLine("Text is empty");
-
-            return;
-        }
-
-        if (!Items.Remove(item))
-        {
-            Debug.WriteLine($"Cannot remove {item} because it is not in the list.");
+            if (!Items.Remove(item))
+            {
+                Debug.WriteLine($"Cannot remove {item} because it is not in the list.");
+            }
         }
     }
 
     [RelayCommand]
     private async Task Select(string item)
     {
-        // TODO Show a message instead.
-        if (string.IsNullOrWhiteSpace(item))
+        if (await ValidateText(item))
+        {
+            // TODO Use the dictionary instead.
+            await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
+        }
+    }
+
+    private async Task<bool> ValidateText(string text)
+    {
+        if (_connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            // TODO extract the dialog to a service.
+            await Shell.Current.DisplayAlert("No Internet", "Please check your internet connection.", "OK");
+
+            return false;
+        }
+
+        if (string.IsNullOrWhiteSpace(text))
         {
             await ShowEmptyTextErrorMessage();
 
+            // TODO Use a logger instead.
             Debug.WriteLine("Text is empty");
 
-            return;
+            return false;
         }
 
-        // TODO Use the dictionary instead.
-        await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
+        return true;
     }
 
     private async Task ShowEmptyTextErrorMessage()
