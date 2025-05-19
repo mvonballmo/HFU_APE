@@ -3,7 +3,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MLZ2025.DetailPage"
-             xmlns:viewModel="clr-namespace:MLZ2025.Core.ViewModel;assembly=MLZ2025.Core"
+             xmlns:viewModel="using:MLZ2025.Core.ViewModel"
              x:DataType="viewModel:DetailViewModel">
 
     <ContentPage.Content>
