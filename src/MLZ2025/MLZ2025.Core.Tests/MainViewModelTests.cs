@@ -4,13 +4,9 @@ namespace MLZ2025.Core.Tests;
 
 public class MainViewModelTests : TestsBase
 {
-    [TestCase("")]
-    [TestCase(" ")]
-    [TestCase("\t")]
-    [TestCase("\r")]
-    [TestCase("   ")]
-    [TestCase(null)]
-    [TestCase("\n")]
+    private static readonly string?[] EmptyTexts = ["", " ", "\t", "\r", "   ", null, "\n"];
+
+    [TestCaseSource(nameof(EmptyTexts))]
     public void TestCannotAddEmptyText(string? text)
     {
         var serviceProvider = CreateServiceProvider();
@@ -35,13 +31,7 @@ public class MainViewModelTests : TestsBase
         Assert.That(_testDialogService.LastMessage, Is.EqualTo("No Internet. Please check your internet connection."));
     }
 
-    [TestCase("")]
-    [TestCase(" ")]
-    [TestCase("\t")]
-    [TestCase("\r")]
-    [TestCase("   ")]
-    [TestCase(null)]
-    [TestCase("\n")]
+    [TestCaseSource(nameof(EmptyTexts))]
     public void TestCannotSelectEmptyText(string? text)
     {
         var serviceProvider = CreateServiceProvider();
@@ -52,13 +42,7 @@ public class MainViewModelTests : TestsBase
         Assert.That(_testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
     }
 
-    [TestCase("")]
-    [TestCase(" ")]
-    [TestCase("\t")]
-    [TestCase("\r")]
-    [TestCase("   ")]
-    [TestCase(null)]
-    [TestCase("\n")]
+    [TestCaseSource(nameof(EmptyTexts))]
     public void TestCannotDeleteEmptyText(string? text)
     {
         var serviceProvider = CreateServiceProvider();
