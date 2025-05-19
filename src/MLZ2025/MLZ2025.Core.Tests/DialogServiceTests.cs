@@ -6,6 +6,8 @@ namespace MLZ2025.Core.Tests;
 
 public class DialogServiceTests
 {
+    private readonly TestDialogService _testDialogService = new();
+
     [TestCase("")]
     [TestCase(" ")]
     [TestCase("\t")]
@@ -15,37 +17,35 @@ public class DialogServiceTests
     [TestCase("\n")]
     public void TestCannotAddEmptyText(string? text)
     {
-        var testDialogService = new TestDialogService();
-        var serviceProvider = new ServiceCollection()
-            .AddCoreServices()
-            .AddSingleton<IDialogService>(testDialogService)
-            .BuildServiceProvider();
-
+        var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
         viewModel.Text = text;
 
         viewModel.AddCommand.Execute(null);
 
-        Assert.That(testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
     }
 
     [Test]
     public void TestAddItem()
     {
-        var testDialogService = new TestDialogService();
-        var serviceProvider = new ServiceCollection()
-            .AddCoreServices()
-            .AddSingleton<IDialogService>(testDialogService)
-            .AddSingleton<IConnectivity, TestConnectivity>()
-            .BuildServiceProvider();
-
+        var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
         viewModel.Text = "Item 1";
 
         viewModel.AddCommand.Execute(null);
 
-        Assert.That(testDialogService.LastMessage, Is.EqualTo(""));
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
         Assert.That(viewModel.Items.Last(), Is.EqualTo("Item 1"));
+    }
+
+    private ServiceProvider CreateServiceProvider()
+    {
+        return new ServiceCollection()
+            .AddCoreServices()
+            .AddSingleton<IDialogService>(_testDialogService)
+            .AddSingleton<IConnectivity, TestConnectivity>()
+            .BuildServiceProvider();
     }
 
     private class TestDialogService : IDialogService
@@ -57,7 +57,7 @@ public class DialogServiceTests
             return Task.CompletedTask;
         }
 
-        public string LastMessage { get; set; } = string.Empty;
+        public string LastMessage { get; private set; } = string.Empty;
     }
 
     private class TestConnectivity : IConnectivity
