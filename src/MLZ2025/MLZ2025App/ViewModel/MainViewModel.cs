@@ -8,11 +8,7 @@ namespace MLZ2025.ViewModel;
 public partial class MainViewModel : ObservableObject
 {
     private readonly IConnectivity _connectivity;
-
-    public MainViewModel(IConnectivity connectivity)
-    {
-        _connectivity = connectivity;
-    }
+    private readonly IDialogService _dialogService;
 
     // TODO Use a custom object instead.
     [ObservableProperty] private ObservableCollection<string> _items =
@@ -24,12 +20,19 @@ public partial class MainViewModel : ObservableObject
 
     [ObservableProperty] private string _text = "Something";
 
+    public MainViewModel(IConnectivity connectivity, IDialogService dialogService)
+    {
+        _connectivity = connectivity;
+        _dialogService = dialogService;
+    }
+
     [RelayCommand]
     private async Task Add()
     {
-        // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(Text))
         {
+            await ShowEmptyTextErrorMessage();
+
             // TODO Use a logger instead.
 
             Debug.WriteLine("Text is empty");
@@ -48,12 +51,12 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void Delete(string item)
+    private async Task Delete(string item)
     {
         // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(item))
         {
-            // TODO Use a logger instead.
+            await ShowEmptyTextErrorMessage();
 
             Debug.WriteLine("Text is empty");
 
@@ -72,7 +75,7 @@ public partial class MainViewModel : ObservableObject
         // TODO Show a message instead.
         if (string.IsNullOrWhiteSpace(item))
         {
-            // TODO Use a logger instead.
+            await ShowEmptyTextErrorMessage();
 
             Debug.WriteLine("Text is empty");
 
@@ -81,5 +84,10 @@ public partial class MainViewModel : ObservableObject
 
         // TODO Use the dictionary instead.
         await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
+    }
+
+    private async Task ShowEmptyTextErrorMessage()
+    {
+        await _dialogService.ShowErrorMessage("Please enter a text");
     }
 }

@@ -21,7 +21,8 @@ public static class MauiProgram
             .AddSingleton<MainViewModel>()
             .AddTransient<DetailPage>()
             .AddTransient<DetailViewModel>()
-            .AddSingleton(Connectivity.Current);
+            .AddSingleton(Connectivity.Current)
+            .AddSingleton<IDialogService, DialogService>();
 
 #if DEBUG
         builder.Logging.AddDebug();
