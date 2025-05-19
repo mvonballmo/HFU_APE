@@ -6,29 +6,29 @@ namespace MLZ2025.Core.Tests;
 
 public class DialogServiceTests
 {
-  [Test]
-  public void TestCannotAddEmptyText()
-  {
-    var testDialogService = new TestDialogService();
-    var viewModel = new MainViewModel(Connectivity.Current, testDialogService)
+    [Test]
+    public void TestCannotAddEmptyText()
     {
-      Text = ""
-    };
+        var testDialogService = new TestDialogService();
+        var viewModel = new MainViewModel(Connectivity.Current, testDialogService)
+        {
+            Text = ""
+        };
 
-    viewModel.AddCommand.Execute(null);
+        viewModel.AddCommand.Execute(null);
 
-    Assert.That(testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
-  }
-
-  private class TestDialogService : IDialogService
-  {
-    public Task ShowErrorMessage(string message)
-    {
-      LastMessage = message;
-
-      return Task.CompletedTask;
+        Assert.That(testDialogService.LastMessage, Is.EqualTo("Please enter a text"));
     }
 
-    public string LastMessage { get; set; }
-  }
+    private class TestDialogService : IDialogService
+    {
+        public Task ShowErrorMessage(string message)
+        {
+            LastMessage = message;
+
+            return Task.CompletedTask;
+        }
+
+        public string LastMessage { get; set; }
+    }
 }
