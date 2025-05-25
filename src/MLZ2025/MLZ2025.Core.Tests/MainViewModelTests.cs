@@ -107,4 +107,20 @@ public class MainViewModelTests : TestsBase
         Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
         Assert.That(viewModel.Items, Does.Not.Contain(item));
     }
+
+    [Test]
+    public void TestSelectItem()
+    {
+        Application.Current = new App();
+
+        var serviceProvider = CreateServiceProvider();
+        var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
+
+        var item = viewModel.Items.Last();
+
+        viewModel.SelectCommand.Execute(item);
+
+        Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
+        Assert.That(viewModel.Text, Is.EqualTo(item));
+    }
 }
