@@ -12,7 +12,8 @@ namespace MLZ2025.Core.Services
                 .AddTransient<DetailPage>()
                 .AddTransient<DetailViewModel>()
                 .AddSingleton(Connectivity.Current)
-                .AddSingleton<IDialogService, DialogService>();
+                .AddSingleton<IDialogService, DialogService>()
+                .AddTransient<HttpClient>();
         }
     }
 }

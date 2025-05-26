@@ -10,5 +10,15 @@
       "lastName": "Bach",
       "id": "2"
     }
+  ],
+  "cars": [
+    {
+      "make": "Volkswagen",
+      "id": "1"
+    },
+    {
+      "make": "BMW",
+      "id": "2"
+    }
   ]
 }
