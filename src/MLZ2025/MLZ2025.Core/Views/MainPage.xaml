@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MLZ2025.MainPage"
              xmlns:viewModel="using:MLZ2025.Core.ViewModel"
+             xmlns:model="using:MLZ2025.Core.Model"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:DataType="viewModel:MainViewModel">
     <!-- <ContentPage.Behaviors> -->
@@ -43,7 +44,7 @@
                         ItemsSource="{Binding Items}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type x:String}">
+                <DataTemplate x:DataType="{x:Type model:DatabaseAddress}">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>
@@ -53,20 +54,30 @@
                                            CommandParameter="{Binding .}"/>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <Grid Padding="0,5">
-                            <Border Padding="10">
-                                <Border.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=SelectCommand}"
-                                        CommandParameter="{Binding .}"/>
-                                </Border.GestureRecognizers>
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="10"/>
-                                </Border.StrokeShape>
-                                <Label Text="{Binding .}"
+                        <Border Padding="10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:MainViewModel}}, Path=SelectCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10"/>
+                            </Border.StrokeShape>
+                            <Grid Padding="0,5"
+                                  ColumnDefinitions=".25*, .25*, .25*, .25*">
+                                <Label Text="{Binding FirstName}"
                                        FontSize="24"/>
-                            </Border>
-                        </Grid>
+                                <Label Text="{Binding LastName}"
+                                       Grid.Column="1"
+                                       FontSize="24"/>
+                                <Label Text="{Binding ZipCode}"
+                                       Grid.Column="2"
+                                       FontSize="24"/>
+                                <Label Text="{Binding Birthday}"
+                                       Grid.Column="3"
+                                       FontSize="24"/>
+                            </Grid>
+                        </Border>
                     </SwipeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

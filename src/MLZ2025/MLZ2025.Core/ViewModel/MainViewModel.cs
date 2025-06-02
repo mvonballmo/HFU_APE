@@ -15,12 +15,12 @@ public partial class MainViewModel : ObservableObject
     private readonly IHttpServerAccess _httpServerAccess;
 
     // TODO Use a custom object instead.
-    [ObservableProperty] private ObservableCollection<string> _items = [];
+    [ObservableProperty] private ObservableCollection<DatabaseAddress> _items = [];
 
     [ObservableProperty] private string _firstName = "Bob";
     [ObservableProperty] private string _lastName = "Jones";
     [ObservableProperty] private string _zipCode = "13357";
-    [ObservableProperty] private DateTime _birthday = DateTime.Today;
+    [ObservableProperty] private DateOnly _birthday = DateOnly.FromDateTime(DateTime.Today);
 
     public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess, IHttpServerAccess httpServerAccess)
     {
@@ -37,58 +37,52 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task Load()
     {
-        // TODO Map all properties from the address to the UI
-        var firstNames = _dataAccess.Table().Select(address => address.FirstName).ToList();
+        var addresses = _dataAccess.Table().ToList();
 
-        if (firstNames.Count == 0)
+        if (addresses.Count == 0)
         {
             var serverAddresses = await _httpServerAccess.GetAddressesAsync();
-            firstNames = serverAddresses.Select(address => address.FirstName).ToList();
+            addresses = serverAddresses.Select(address => new DatabaseAddress { FirstName = address.FirstName }).ToList();
         }
 
-        Items = new ObservableCollection<string>(firstNames);
+        Items = new ObservableCollection<DatabaseAddress>(addresses);
     }
 
     [RelayCommand]
     private async Task Add()
     {
-        var text = FirstName;
+        // TODO Validate other fields (birthday, ZipCode, etc.)
 
-        if (await ValidateText(text))
+        if (await ValidateText(FirstName) && await ValidateText(LastName))
         {
-            Items.Add(text);
-
-            _dataAccess.Insert(new DatabaseAddress
+            var d = new DatabaseAddress
             {
                 FirstName = FirstName,
                 LastName = LastName,
                 ZipCode = ZipCode,
-                Birthday = Birthday
-            });
+                Birthday = Birthday.ToDateTime(TimeOnly.MinValue)
+            };
+
+            Items.Add(d);
+            _dataAccess.Insert(d);
         }
     }
 
     [RelayCommand]
-    private async Task Delete(string item)
+    private async Task Delete(DatabaseAddress item)
     {
-        if (await ValidateText(item))
+        if (!Items.Remove(item))
         {
-            if (!Items.Remove(item))
-            {
-                Debug.WriteLine($"Cannot remove {item} because it is not in the list.");
-            }
+            Debug.WriteLine($"Cannot remove {item} because it is not in the list.");
         }
     }
 
     [RelayCommand]
-    private async Task Select(string item)
+    private async Task Select(DatabaseAddress item)
     {
-        if (await ValidateText(item))
-        {
-            // TODO Use the dictionary instead.
-            // Figure out how to test the Shell <https://software-engineering-corner.zuehlke.com/how-to-test-a-net-maui-app-part-1#heading-testing-of-a-view-model>
-            await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
-        }
+        // TODO Use the dictionary instead.
+        // Figure out how to test the Shell <https://software-engineering-corner.zuehlke.com/how-to-test-a-net-maui-app-part-1#heading-testing-of-a-view-model>
+        await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.Text)}={item}");
     }
 
     private async Task<bool> ValidateText(string text)
