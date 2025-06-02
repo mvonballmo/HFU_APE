@@ -11,23 +11,23 @@ public partial class MainViewModel : ObservableObject
 {
     private readonly IConnectivity _connectivity;
     private readonly IDialogService _dialogService;
+    private readonly DataAccess<DatabaseAddress> _dataAccess;
 
     // TODO Use a custom object instead.
-    [ObservableProperty] private ObservableCollection<string> _items =
-    [
-        "Apples",
-        "Bananas",
-        "Oranges"
-    ];
+    [ObservableProperty] private ObservableCollection<string> _items;
 
     [ObservableProperty] private string _text = "Something";
-    private DataAccess<DatabaseAddress> _dataAccess;
 
     public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess)
     {
         _connectivity = connectivity;
         _dialogService = dialogService;
         _dataAccess = dataAccess;
+
+        // TODO Map all properties from the address to the UI
+        var firstNames = _dataAccess.Table().Select(address => address.FirstName).ToList();
+
+        _items = new ObservableCollection<string>(firstNames);
     }
 
     [RelayCommand]
