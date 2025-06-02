@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MLZ2025.Core.Model;
 using MLZ2025.Core.Services;
 
 namespace MLZ2025.Core.ViewModel;
@@ -20,11 +21,13 @@ public partial class MainViewModel : ObservableObject
     ];
 
     [ObservableProperty] private string _text = "Something";
+    private DataAccess<DatabaseAddress> _dataAccess;
 
-    public MainViewModel(IConnectivity connectivity, IDialogService dialogService)
+    public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess)
     {
         _connectivity = connectivity;
         _dialogService = dialogService;
+        _dataAccess = dataAccess;
     }
 
     [RelayCommand]
@@ -35,6 +38,13 @@ public partial class MainViewModel : ObservableObject
         if (await ValidateText(text))
         {
             Items.Add(text);
+
+            _dataAccess.Insert(new DatabaseAddress
+            {
+                FirstName = text, // TODO Use a more meaningful property.
+                LastName = "Last Name" // TODO Placeholder for the sake of example.
+            });
+
             Text = "";
         }
     }

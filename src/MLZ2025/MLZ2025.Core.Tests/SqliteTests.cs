@@ -4,12 +4,13 @@ using MLZ2025.Core.Services;
 namespace MLZ2025.Core.Tests;
 
 [TestFixture]
-public class SqliteTests
+public class SqliteTests : TestsBase
 {
     [Test]
     public void TestGetAndAddData()
     {
-        using (var dataAccess = new DataAccess<DatabaseAddress>())
+        var serviceProvider = CreateServiceProvider();
+        using (var dataAccess = serviceProvider.GetRequiredService<DataAccess<DatabaseAddress>>())
         {
             dataAccess.DeleteAll();
 

@@ -2,17 +2,22 @@ using SQLite;
 
 namespace MLZ2025.Core.Services;
 
+public class DataAccessSettings
+{
+    public string Filename { get; set; } = "addresses.db";
+}
+
 public class DataAccess<T> : IDisposable
     where T : new()
 {
-    public DataAccess()
+    public DataAccess(DataAccessSettings settings)
     {
         if (!Directory.Exists(DatabaseFolder))
         {
             Directory.CreateDirectory(DatabaseFolder);
         }
 
-        var options = new SQLiteConnectionString(DatabasePath, true);
+        var options = new SQLiteConnectionString(Path.Join(DatabaseFolder, settings.Filename), true);
 
         _connection = new SQLiteConnection(options);
 
@@ -59,6 +64,5 @@ public class DataAccess<T> : IDisposable
     private static readonly string DatabaseFolder =
         Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MLZ2025");
 
-    private static readonly string DatabasePath = Path.Join(DatabaseFolder, "addresses.db");
     private readonly SQLiteConnection _connection;
 }
