@@ -15,9 +15,12 @@ public partial class MainViewModel : ObservableObject
     private readonly IHttpServerAccess _httpServerAccess;
 
     // TODO Use a custom object instead.
-    [ObservableProperty] private ObservableCollection<string> _items;
+    [ObservableProperty] private ObservableCollection<string> _items = [];
 
-    [ObservableProperty] private string _text = "Something";
+    [ObservableProperty] private string _firstName = "Bob";
+    [ObservableProperty] private string _lastName = "Jones";
+    [ObservableProperty] private string _zipCode = "13357";
+    [ObservableProperty] private DateTime _birthday = DateTime.Today;
 
     public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess, IHttpServerAccess httpServerAccess)
     {
@@ -26,23 +29,30 @@ public partial class MainViewModel : ObservableObject
         _dataAccess = dataAccess;
         _httpServerAccess = httpServerAccess;
 
+        // TODO add a loading property
+
+        // Task.Run(LoadAsync);
+    }
+
+    [RelayCommand]
+    private async Task Load()
+    {
         // TODO Map all properties from the address to the UI
         var firstNames = _dataAccess.Table().Select(address => address.FirstName).ToList();
 
         if (firstNames.Count == 0)
         {
-            // TODO Stop using the GetAwaiter().GetResult() pattern.
-            var serverAddresses = _httpServerAccess.GetAddressesAsync().GetAwaiter().GetResult();
+            var serverAddresses = await _httpServerAccess.GetAddressesAsync();
             firstNames = serverAddresses.Select(address => address.FirstName).ToList();
         }
 
-        _items = new ObservableCollection<string>(firstNames);
+        Items = new ObservableCollection<string>(firstNames);
     }
 
     [RelayCommand]
     private async Task Add()
     {
-        var text = Text;
+        var text = FirstName;
 
         if (await ValidateText(text))
         {
@@ -50,11 +60,11 @@ public partial class MainViewModel : ObservableObject
 
             _dataAccess.Insert(new DatabaseAddress
             {
-                FirstName = text, // TODO Use a more meaningful property.
-                LastName = "Last Name" // TODO Placeholder for the sake of example.
+                FirstName = FirstName,
+                LastName = LastName,
+                ZipCode = ZipCode,
+                Birthday = Birthday
             });
-
-            Text = "";
         }
     }
 

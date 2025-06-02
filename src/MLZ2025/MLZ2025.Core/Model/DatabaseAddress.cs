@@ -10,4 +10,8 @@ public class DatabaseAddress
     public string FirstName { get; set; } = "";
 
     public string LastName { get; set; } = "";
+
+    public string ZipCode { get; set; } = "";
+
+    public DateTime Birthday { get; set; } = DateTime.Today;
 }
