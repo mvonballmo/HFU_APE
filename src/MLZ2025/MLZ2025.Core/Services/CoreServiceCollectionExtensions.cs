@@ -16,6 +16,7 @@ namespace MLZ2025.Core.Services
                 .AddSingleton<IDialogService, DialogService>()
                 .AddSingleton<DataAccess<DatabaseAddress>>()
                 .AddSingleton<DataAccessSettings>()
+                .AddTransient<IHttpServerAccess, HttpServerAccess>()
                 .AddTransient<HttpClient>();
         }
     }
