@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MLZ2025.MainPage"
              xmlns:viewModel="using:MLZ2025.Core.ViewModel"
-             xmlns:model="using:MLZ2025.Core.Model"
+             xmlns:model="using:MLZ2025.Shared.Model"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:model1="clr-namespace:MLZ2025.Shared.Model;assembly=MLZ2025.Shared"
              x:DataType="viewModel:MainViewModel">
     <!-- <ContentPage.Behaviors> -->
     <!--     <toolkit:EventToCommandBehavior -->
@@ -44,7 +45,7 @@
                         ItemsSource="{Binding Items}"
                         SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="{x:Type model:DatabaseAddress}">
+                <DataTemplate x:DataType="{x:Type model1:DatabaseAddress}">
                     <SwipeView>
                         <SwipeView.RightItems>
                             <SwipeItems>

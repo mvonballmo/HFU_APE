@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MLZ2025.Core.Model;
 using MLZ2025.Core.Services;
+using MLZ2025.Shared.Model;
 
 namespace MLZ2025.Core.ViewModel;
 

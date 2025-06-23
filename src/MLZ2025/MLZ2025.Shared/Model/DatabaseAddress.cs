@@ -1,6 +1,6 @@
 using SQLite;
 
-namespace MLZ2025.Core.Model;
+namespace MLZ2025.Shared.Model;
 
 [Table("Address")]
 public class DatabaseAddress
