@@ -13,7 +13,7 @@ public class MainViewModelTests : TestsBase
     {
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
-        viewModel.Text = text;
+        viewModel.FirstName = text;
 
         viewModel.AddCommand.Execute(null);
 
@@ -63,7 +63,7 @@ public class MainViewModelTests : TestsBase
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
         _testConnectivity.NetworkAccess = NetworkAccess.None;
-        viewModel.Text = "Foo";
+        viewModel.FirstName = "Foo";
 
         viewModel.AddCommand.Execute(null);
 
@@ -125,12 +125,12 @@ public class MainViewModelTests : TestsBase
     {
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
-        viewModel.Text = "Item 1";
+        viewModel.FirstName = "Item 1";
 
         viewModel.AddCommand.Execute(null);
 
         Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
-        Assert.That(viewModel.Items.Last(), Is.EqualTo("Item 1"));
+        Assert.That(viewModel.Items.Last(), Is.EqualTo(null));
     }
 
     [Test]
@@ -160,7 +160,7 @@ public class MainViewModelTests : TestsBase
         viewModel.SelectCommand.Execute(item);
 
         Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
-        Assert.That(viewModel.Text, Is.EqualTo(item));
+        Assert.That(viewModel.FirstName, Is.EqualTo(item.FirstName));
     }
 
     private class TestHttpServerAccess : IHttpServerAccess
