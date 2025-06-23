@@ -1,6 +1,6 @@
 using MLZ2025.Core.Model;
 
-namespace MLZ2025.Core.Services;
+namespace MLZ2025.Shared.Services;
 
 public interface IHttpServerAccess
 {

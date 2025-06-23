@@ -1,7 +1,7 @@
 using MLZ2025.Core.Model;
 using Newtonsoft.Json;
 
-namespace MLZ2025.Core.Services;
+namespace MLZ2025.Shared.Services;
 
 public class HttpServerAccess : IHttpServerAccess
 {
