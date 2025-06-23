@@ -75,15 +75,7 @@ else
     {
         var databaseAddresses = DatabaseAddresses.Table().ToList() ?? new List<DatabaseAddress>();
 
-        addresses = databaseAddresses.Select(d => new TigerViewAddress
-        {
-            FirstName = d.FirstName,
-            LastName = d.LastName,
-            Email = d.Email,
-            Phone = d.Phone,
-            Birthday = d.Birthday,
-            ZipCode = d.ZipCode
-        }).ToList();
+        addresses = databaseAddresses.Select(TigerViewAddress.FromDatabaseAddress).ToList();
     }
 
     private void HandleValidSubmit()
@@ -92,15 +84,7 @@ else
 
         submitted = true;
 
-        DatabaseAddresses.Insert(new DatabaseAddress
-        {
-            FirstName = address.FirstName,
-            LastName = address.LastName,
-            Email = address.Email,
-            Phone = address.Phone,
-            Birthday = address.Birthday,
-            ZipCode = address.ZipCode
-        });
+        DatabaseAddresses.Insert(TigerViewAddress.FromTigerViewAddress(address));
 
         // Reset the form
         address = new TigerViewAddress();
