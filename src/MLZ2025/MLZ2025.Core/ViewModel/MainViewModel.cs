@@ -17,7 +17,7 @@ public partial class MainViewModel : ObservableObject
     private readonly DataLoader _dataLoader;
 
     // TODO Use a custom object instead.
-    [ObservableProperty] private ObservableCollection<DatabaseAddress> _items = [];
+    [ObservableProperty] private ObservableCollection<ViewAddress> _items = [];
 
     [ObservableProperty] private string _firstName = "Bob";
     [ObservableProperty] private string _lastName = "Jones";
@@ -41,7 +41,7 @@ public partial class MainViewModel : ObservableObject
     {
         var addresses = await _dataLoader.GetDatabaseAddresses();
 
-        Items = new ObservableCollection<DatabaseAddress>(addresses);
+        Items = new ObservableCollection<ViewAddress>(addresses.Select(ViewAddress.FromDatabaseAddress));
     }
 
     [RelayCommand]
@@ -51,7 +51,7 @@ public partial class MainViewModel : ObservableObject
 
         if (await ValidateText(FirstName) && await ValidateText(LastName))
         {
-            var d = new DatabaseAddress
+            var d = new ViewAddress
             {
                 FirstName = FirstName,
                 LastName = LastName,
@@ -60,12 +60,12 @@ public partial class MainViewModel : ObservableObject
             };
 
             Items.Add(d);
-            _dataAccess.Insert(d);
+            _dataAccess.Insert(ViewAddress.ToDatabaseAddress(d));
         }
     }
 
     [RelayCommand]
-    private async Task Delete(DatabaseAddress item)
+    private async Task Delete(ViewAddress item)
     {
         if (!Items.Remove(item))
         {
@@ -74,7 +74,7 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private async Task Select(DatabaseAddress item)
+    private async Task Select(ViewAddress item)
     {
         // TODO Use the dictionary instead.
         // Figure out how to test the Shell <https://software-engineering-corner.zuehlke.com/how-to-test-a-net-maui-app-part-1#heading-testing-of-a-view-model>

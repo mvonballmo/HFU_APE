@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-using MLZ2025.Shared.Model;
 
-namespace TigerOne.Shared.Model;
+namespace MLZ2025.Shared.Model;
 
 public class ViewAddress
 {
