@@ -10,6 +10,7 @@ builder.Services.AddRazorComponents()
 
 // Add device-specific services used by the TigerOne.Shared project
 builder.Services
+    .AddTigerOneSharedServices()
     .AddSingleton<IFormFactor, FormFactor>();
 
 var app = builder.Build();

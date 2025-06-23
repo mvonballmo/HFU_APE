@@ -14,4 +14,8 @@ public class DatabaseAddress
     public string ZipCode { get; set; } = "";
 
     public DateTime Birthday { get; set; } = DateTime.Today;
+
+    public string Email { get; set; } = "";
+
+    public string Phone { get; set; } = "";
 }

@@ -17,7 +17,9 @@ public static class MauiProgram
             });
 
         // Add device-specific services used by the TigerOne.Shared project
-        builder.Services.AddSingleton<IFormFactor, FormFactor>();
+        builder.Services
+            .AddTigerOneSharedServices()
+            .AddSingleton<IFormFactor, FormFactor>();
 
         builder.Services.AddMauiBlazorWebView();
 
