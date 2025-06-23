@@ -65,17 +65,17 @@ else
 
 @code {
 
-    private TigerViewAddress address = new();
+    private ViewAddress address = new();
     private bool submitted = false;
 
     // List to store people
-    private List<TigerViewAddress> addresses = new();
+    private List<ViewAddress> addresses = new();
 
     protected override async Task OnInitializedAsync()
     {
         var databaseAddresses = DatabaseAddresses.Table().ToList() ?? new List<DatabaseAddress>();
 
-        addresses = databaseAddresses.Select(TigerViewAddress.FromDatabaseAddress).ToList();
+        addresses = databaseAddresses.Select(ViewAddress.FromDatabaseAddress).ToList();
     }
 
     private void HandleValidSubmit()
@@ -84,9 +84,9 @@ else
 
         submitted = true;
 
-        DatabaseAddresses.Insert(TigerViewAddress.FromTigerViewAddress(address));
+        DatabaseAddresses.Insert(ViewAddress.ToDatabaseAddress(address));
 
         // Reset the form
-        address = new TigerViewAddress();
+        address = new ViewAddress();
     }
 }

@@ -1,14 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using MLZ2025.Shared.Model;
-using SQLite;
 
 namespace TigerOne.Shared.Model;
 
-public class TigerViewAddress
+public class ViewAddress
 {
-    public static TigerViewAddress FromDatabaseAddress(DatabaseAddress address)
+    public static ViewAddress FromDatabaseAddress(DatabaseAddress address)
     {
-        return new TigerViewAddress
+        return new ViewAddress
         {
             FirstName = address.FirstName,
             LastName = address.LastName,
@@ -19,7 +18,7 @@ public class TigerViewAddress
         };
     }
 
-    public static DatabaseAddress FromTigerViewAddress(TigerViewAddress address)
+    public static DatabaseAddress ToDatabaseAddress(ViewAddress address)
     {
         return new DatabaseAddress
         {
