@@ -1,6 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using MLZ2025.Core.Model;
-using MLZ2025.Core.Services;
 using MLZ2025.Shared.Model;
 
 namespace MLZ2025.Shared.Services
@@ -13,6 +11,7 @@ namespace MLZ2025.Shared.Services
                 .AddSingleton<DataAccess<DatabaseAddress>>()
                 .AddSingleton<DataAccessSettings>()
                 .AddTransient<IHttpServerAccess, HttpServerAccess>()
+                .AddSingleton<DataLoader>()
                 .AddTransient<HttpClient>();
         }
     }

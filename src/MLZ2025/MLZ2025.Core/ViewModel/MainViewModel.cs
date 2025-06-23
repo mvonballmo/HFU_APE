@@ -14,7 +14,7 @@ public partial class MainViewModel : ObservableObject
     private readonly IConnectivity _connectivity;
     private readonly IDialogService _dialogService;
     private readonly DataAccess<DatabaseAddress> _dataAccess;
-    private readonly IHttpServerAccess _httpServerAccess;
+    private readonly DataLoader _dataLoader;
 
     // TODO Use a custom object instead.
     [ObservableProperty] private ObservableCollection<DatabaseAddress> _items = [];
@@ -24,12 +24,12 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty] private string _zipCode = "13357";
     [ObservableProperty] private DateOnly _birthday = DateOnly.FromDateTime(DateTime.Today);
 
-    public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess, IHttpServerAccess httpServerAccess)
+    public MainViewModel(IConnectivity connectivity, IDialogService dialogService, DataAccess<DatabaseAddress> dataAccess, DataLoader dataLoader)
     {
         _connectivity = connectivity;
         _dialogService = dialogService;
         _dataAccess = dataAccess;
-        _httpServerAccess = httpServerAccess;
+        _dataLoader = dataLoader;
 
         // TODO add a loading property
 
@@ -39,13 +39,7 @@ public partial class MainViewModel : ObservableObject
     [RelayCommand]
     private async Task Load()
     {
-        var addresses = _dataAccess.Table().ToList();
-
-        if (addresses.Count == 0)
-        {
-            var serverAddresses = await _httpServerAccess.GetAddressesAsync();
-            addresses = serverAddresses.Select(address => new DatabaseAddress { FirstName = address.FirstName }).ToList();
-        }
+        var addresses = await _dataLoader.GetDatabaseAddresses();
 
         Items = new ObservableCollection<DatabaseAddress>(addresses);
     }
