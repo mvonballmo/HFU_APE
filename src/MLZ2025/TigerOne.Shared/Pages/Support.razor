@@ -1,7 +1,7 @@
 ﻿@page "/support"
-@using System.ComponentModel.DataAnnotations
 @using MLZ2025.Shared.Model
 @using MLZ2025.Shared.Services
+@using TigerOne.Shared.Model
 @inject DataAccess<DatabaseAddress> DatabaseAddresses
 
 <PageTitle>Support</PageTitle>
@@ -65,27 +65,44 @@ else
 
 @code {
 
-    private DatabaseAddress address = new();
+    private TigerViewAddress address = new();
     private bool submitted = false;
 
     // List to store people
-    private List<DatabaseAddress> addresses = new();
+    private List<TigerViewAddress> addresses = new();
 
     protected override async Task OnInitializedAsync()
     {
-        addresses = DatabaseAddresses.Table().ToList() ?? new List<DatabaseAddress>();
+        var databaseAddresses = DatabaseAddresses.Table().ToList() ?? new List<DatabaseAddress>();
+
+        addresses = databaseAddresses.Select(d => new TigerViewAddress
+        {
+            FirstName = d.FirstName,
+            LastName = d.LastName,
+            Email = d.Email,
+            Phone = d.Phone,
+            Birthday = d.Birthday,
+            ZipCode = d.ZipCode
+        }).ToList();
     }
 
     private void HandleValidSubmit()
     {
-        // Add new person to the list
         addresses.Add(address);
 
         submitted = true;
 
-        DatabaseAddresses.Insert(address);
+        DatabaseAddresses.Insert(new DatabaseAddress
+        {
+            FirstName = address.FirstName,
+            LastName = address.LastName,
+            Email = address.Email,
+            Phone = address.Phone,
+            Birthday = address.Birthday,
+            ZipCode = address.ZipCode
+        });
 
         // Reset the form
-        address = new DatabaseAddress();
+        address = new TigerViewAddress();
     }
 }
