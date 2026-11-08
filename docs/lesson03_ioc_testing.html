@@ -2,19 +2,19 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/NetMaui.png" type="image/png">
 
-  <title>Mobile App Entwicklung, Lektion 03, Dialogs, IOC, Testing</title>
+  <title>Lektion 03: IOC, Testing (Mobile App Entwicklung)</title>
 
-  <link rel=" stylesheet" href="dist/reset.css" />
-  <link rel="stylesheet" href="dist/reveal.css" />
-  <link rel="stylesheet" href="dist/theme/white.css" />
-  <link rel="stylesheet" href="slides.css" />
+  <link rel="stylesheet" href="dist/reset.css">
+  <link rel="stylesheet" href="dist/reveal.css">
+  <link rel="stylesheet" href="dist/theme/white.css">
+  <link rel="stylesheet" href="slides.css">
 
   <!-- Theme used for syntax highlighted code -->
-  <link rel="stylesheet" href="plugin/highlight/github.css" />
+  <link rel="stylesheet" href="plugin/highlight/github.css">
 
   <style>
     section.whiteText h1 {
@@ -107,13 +107,6 @@
         <h2>Lektion 3</h2>
         <p>IOC, Testing</p>
       </section>
-      <section>
-        <h1>Lektion 3: Themen</h1>
-        <ol>
-          <li>IOC (Inversion of Control)</li>
-          <li>Testing</li>
-        </ol>
-      </section>
 
       <section data-background="assets/looking-back-dimmed.jpg">
         <h1>Rückblick</h1>
@@ -142,43 +135,39 @@
       <section>
         <h1>Übersicht Lektionen</h1>
         <ol class="compact">
-          <li class="completed">
-            Vorstellung, Einführung und Framework-Evaluation
-          </li>
-          <li class="completed">
-            Evaluation, Selektion und Aufsetzen eines Frameworks
-          </li>
+          <li class="completed">Einführung, Evaluation, und Einrichtung</li>
+          <li class="completed">Einführung IDE mit Maui</li>
           <li class="selected">IOC und Testing</li>
+          <li><code>async</code>, SQLite und HTTP Client</li>
+          <li><b>LZK1</b>; MVVM, Bindings, Controls</li>
           <li>Popupelementen (Dialogen) und Steuerelemente</li>
-          <li><b>LK1</b>; MVVM, Bindings, Controls</li>
-          <li>Benachrichtigungen &amp; Biometrie</li>
-          <li>Datenbanken (SQLite); HTTP Client</li>
-          <li><b>LK2</b>; Hybrid-Apps</li>
+          <li>Mobile Web und Hybrid-Apps</li>
+          <li><b>LZK2</b>; Projektarbeit</li>
           <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
         </ol>
       </section>
 
       <section>
-        <h1>Dokumentationen</h1>
-        <p>
-          Die folgende Online-Referenzen sind sehr nützlich und
-          werden statt einem Buch eingesetzt.
-        </p>
-        <ul>
-          <li>
-            <a href="https://learn.microsoft.com/de-de/dotnet/maui/">Dokumentation zur .NET Multi-Platform App UI</a>
-          </li>
-          <li>
-            <a href="https://learn.microsoft.com/de-de/dotnet/maui/what-is-maui">Was ist .NET MAUI?</a>
-          </li>
-          <li>
-            <a href="https://learn.microsoft.com/de-de/dotnet/maui/get-started/resources">Lernressourcen für .NET MAUI</a>
-          </li>
-          <li>
-            <a href="https://learn.microsoft.com/de-de/training/paths/build-apps-with-dotnet-maui/">Erstellen Sie mobile und Desktop-Anwendungen
-              mit .NET MAUI</a>
-          </li>
-        </ul>
+        <h1>Dokumentation/h1>
+          <p>
+            Die folgende Online-Referenzen sind sehr nützlich und
+            werden statt einem Buch eingesetzt.
+          </p>
+          <ul>
+            <li>
+              <a href="https://learn.microsoft.com/de-de/dotnet/maui/">Dokumentation zur .NET Multi-Platform App UI</a>
+            </li>
+            <li>
+              <a href="https://learn.microsoft.com/de-de/dotnet/maui/what-is-maui">Was ist .NET MAUI?</a>
+            </li>
+            <li>
+              <a href="https://learn.microsoft.com/de-de/dotnet/maui/get-started/resources">Lernressourcen für .NET MAUI</a>
+            </li>
+            <li>
+              <a href="https://learn.microsoft.com/de-de/training/paths/build-apps-with-dotnet-maui/">Erstellen Sie mobile und Desktop-Anwendungen
+                mit .NET MAUI</a>
+            </li>
+          </ul>
       </section>
 
       <section>
@@ -376,16 +365,19 @@
 
       <section>
         <h1>IoC: Anforderungen</h1>
-        Wir würden gerne mit Abstraktionen arbeiten ein IoC
-        Container enthält Registrierungen von
         <ul>
-          <li>Abstraktionen...</li>
-          <li>...zu Implementierungen</li>
+          <li>Wir würden gerne mit Abstraktionen arbeiten</li>
+          <li>Ein IoC Container enthält Registrierungen von
+            <ul>
+              <li>Abstraktionen...</li>
+              <li>...zu Implementierungen</li>
+            </ul>
+          </li>
+          <li>
+            Ein Container liefert Implementierungen für angeforderte
+            Abstraktionen
+          </li>
         </ul>
-        <li>
-          Ein Container liefert Implementierungen für angeforderte
-          Abstraktionen
-        </li>
       </section>
 
       <section>
@@ -455,14 +447,14 @@
         </ul>
       </section>
 
-      <section>
+      <section class="compact">
         <h1>IoC: Workflow</h1>
         <ul>
           <li>
             Schnittstellen/"Services" registrieren
             <ul>
               <li>
-                <code>Container.Register&lt;Interface,
+                <code>services.AddSingleton&lt;Interface,
                                         Implementation&gt;()</code>
               </li>
             </ul>
@@ -470,12 +462,17 @@
           <li>
             IoC versiegeln (keine weitere Registrierungen
             erlaubt)
+            <ul>
+              <li>
+                <code>var provider = services.BuildServiceProvider();</code>
+              </li>
+            </ul>
           </li>
           <li>
             Schnittstellen/"Services" aus dem Container holen
             <ul>
               <li>
-                <code>Container.Resolve&lt;Interface&gt;()</code>
+                <code>provider.GetRequiredService&lt;Interface&gt;()</code>
               </li>
             </ul>
           </li>
@@ -498,17 +495,17 @@
         <pre>
           <code data-trim class="language-csharp hljs">
             // Register
-            var container = CreateContainer()
-            .RegisterSingle&lt;IToy, StarWarsLegos&gt;();
+            var services = new ServiceCollection()
+            .AddSingleton&lt;IToy, StarWarsLegos&gt;();
 
             // Seal
-            var services = container.GetServices();
+            var provider = services.BuildServiceProvider();
 
             // Request
-            var toy = services.GetInstance&lt;IToy&gt;();
+            var toy = provider.GetRequiredService&lt;IToy&gt;();
 
             // Error!
-            container.RegisterSingle&lt;IToy, BoardGame&gt;();
+            container.AddSingleton&lt;IToy, BoardGame&gt;();
         </code></pre>
       </section>
 
@@ -539,15 +536,15 @@
             class B { B(A a) { } }
             class C : A { }
 
-            var s1 = CreateContainer().GetServices();
+            var s1 = CreateServices().BuildServiceProvider();
 
             var b = s1.GetInstance&lt;B&gt;(); // uses A
 
-            var s2 = CreateContainer()
-            .Register&lt;A, C&gt;()
-            .GetServices();
+            var s2 = CreateServices()
+            .AddTransient&lt;A, C&gt;()
+            .BuildServiceProvider();
 
-            var b = s2.GetInstance&lt;B&gt;(); // uses C
+            var b = s2.GetRequiredService&lt;B&gt;(); // uses C
         </code></pre>
       </section>
 
@@ -556,9 +553,9 @@
         <pre>
           <code data-trim class="language-csharp hljs">
             // Get all objects...
-            var toy = services.GetInstance&lt;IToy&gt;();
-            var player = services.GetInstance&lt;IPerson&gt;();
-            var game = services.GetInstance&lt;IGame&gt;();
+            var toy = services.GetRequiredService&lt;IToy&gt;();
+            var player = services.GetRequiredService&lt;IPerson&gt;();
+            var game = services.GetRequiredService&lt;IGame&gt;();
 
             // Use them
             game.Start(player, toy);
@@ -571,11 +568,11 @@
         <p>Ein übergeordnetes Konzept einsetzen.</p>
         <pre>
           <code data-trim class="language-csharp hljs">
-            var services = CreateContainer()
-              .RegisterSingle&lt;IGame, Game&gt;()
-              .RegisterSingle&lt;IToy, StarWarsLegos&gt;()
-              .RegisterSingle&lt;IPerson, Child&gt;()
-              .GetServices();
+            var provider = CreateServices()
+              .AddSingleton&lt;IGame, Game&gt;()
+              .AddSingleton&lt;IToy, StarWarsLegos&gt;()
+              .AddSingleton&lt;IPerson, Child&gt;()
+              .BuildServiceProvider();
 
             class PlayDate
             {
@@ -583,7 +580,7 @@
             }
 
             // Get new play date (transient)
-            services.GetInstance&lt;PlayDate&gt;().Start();
+            provider.GetRequiredService&lt;PlayDate&gt;().Start();
           </code>
         </pre>
       </section>
@@ -612,25 +609,25 @@
               StarWarsLegos(IPerson owner) { }
             }
 
-            var services = CreateContainer()
-              .RegisterSingle&lt;IToy, StarWarsLegos&gt;()
-              .Register&lt;IPerson, Child&gt;()
-              .GetServices();
+            var provider = CreateServices()
+              .AddSingleton&lt;IToy, StarWarsLegos&gt;()
+              .AddTransient&lt;IPerson, Child&gt;()
+              .BuildServiceProvider();
 
-            var toy = services.GetInstance&lt;IToy&gt;(); // CRASH
+            var toy = provider.GetRequiredService&lt;IToy&gt;(); // CRASH
           </code>
         </pre>
       </section>
 
       <section>
-        <h2>Anti-pattern: Container injizieren</h2>
+        <h2>Anti-pattern: Provider injizieren</h2>
         <p>Abhängigkeiten werden vom Aufrufer verborgen.</p>
         <pre>
           <code data-trim class="language-csharp hljs">
-            bool CanFly(Container container)
+            bool CanFly(IServiceProvider provider)
             {
-              var droid = container.GetInstance&lt;IDroid&gt;();
-              var pilot = container.GetInstance&lt;IPilot&gt;();
+              var droid = provider.GetInstance&lt;IDroid&gt;();
+              var pilot = provider.GetInstance&lt;IPilot&gt;();
 
               return droid.Online &amp;&amp; pilot.Awake;
             }
@@ -645,8 +642,8 @@
           <code data-trim class="language-csharp hljs">
             bool CanFly()
             {
-              var droid = ServiceLocator.GetInstance&lt;IDroid&gt;();
-              var pilot = ServiceLocator.GetInstance&lt;IPilot&gt;();
+              var droid = ServiceLocator.GetRequiredService&lt;IDroid&gt;();
+              var pilot = ServiceLocator.GetRequiredService&lt;IPilot&gt;();
 
               return droid.Online &amp;&amp; pilot.Awake;
             }
@@ -672,7 +669,7 @@
       </section>
 
       <section>
-        <h1>IoC in Xamarin</h1>
+        <h1>IoC in Maui</h1>
         <img src="assets/Lesson03/IOCXamarin.jpg" class="full-width" />
       </section>
 
@@ -703,7 +700,7 @@
       </section>
 
       <section>
-        <h1>IoC von Xamarin</h1>
+        <h1>IoC von Maui</h1>
         <ul>
           <li>
             Ist ein <strong>muss</strong> für "Custom Controls"
@@ -854,8 +851,7 @@
             </ul>
           </li>
           <li>
-            Wir bevorzugen "NUnit" weil das API besser und
-            Test-Runner besser ist
+            Wir bevorzugen "NUnit" weil das API besser ist
           </li>
         </ul>
       </section>

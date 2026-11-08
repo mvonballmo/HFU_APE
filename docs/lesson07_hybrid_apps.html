@@ -4,8 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/NetMaui.png" type="image/png">
 
-  <title>Mobile App Entwicklung, Lektion 05: Hybrid-Apps</title>
+  <title>Lektion 07: Mobile Web und Hybrid-Apps (Mobile App Entwicklung)</title>
 
   <link rel="stylesheet" href="dist/reset.css">
   <link rel="stylesheet" href="dist/reveal.css">
@@ -21,36 +22,30 @@
     <div class="slides">
       <section data-background="assets/MonteRosa.jpg" class="white-text">
         <h1>Mobile App Entwicklung</h1>
-        <h2>Lektion 5</h2>
+        <h2>Lektion 7</h2>
         <p>
-          Hybrid-Apps
+          Mobile Web und Hybrid-Apps
         </p>
       </section>
 
       <section data-background="assets/looking-back-dimmed.jpg">
         <h1>Rückblick</h1>
         <ul>
-          <li>Einführung Android</li>
-          <li>Benachrichtigungen
-            <ul>
-              <li><a href="https://docs.microsoft.com/en-us/xamarin/android/app-fundamentals/notifications/local-notifications">Lokal</a></li>
-              <li><a href="https://docs.microsoft.com/en-us/xamarin/android/data-cloud/google-messaging/firebase-cloud-messaging">Push/Remote</a></li>
-            </ul>
-          </li>
+          <li><a href="https://learn.microsoft.com/de-de/dotnet/maui/user-interface/pop-ups">Popupelementen</a></li>
         </ul>
       </section>
 
       <section>
         <h1>Übersicht Lektionen</h1>
         <ol class="compact">
-          <li class="completed">Vorstellung, Einführung und Aufsetzen von Werkzeugen</li>
-          <li class="completed">MVVM, Bindings, Controls, Debugging</li>
-          <li class="completed">Dialogs, Styling, IOC, Testing</li>
-          <li class="completed">Benachrichtigungen (Lokal/Push/Remote)</li>
-          <li class="selected">Hybrid-Apps</li>
-          <li>Datenbanken (SQLite); HTTP Client</li>
-          <li>Sicherheit &amp; Biometrie</li>
-          <li><b>LK1</b>; Projektarbeit</li>
+          <li class="completed">Einführung, Evaluation, und Einrichtung</li>
+          <li class="completed">Einführung IDE mit Maui</li>
+          <li class="completed">IOC und Testing</li>
+          <li class="completed"><code>async</code>, SQLite und HTTP Client</li>
+          <li class="completed"><b>LZK1</b>; MVVM, Bindings, Controls</li>
+          <li class="completed">Popupelementen (Dialogen) und Steuerelemente</li>
+          <li class="selected">Mobile Web und Hybrid-Apps</li>
+          <li><b>LZK2</b>; Projektarbeit</li>
           <li><b>MLZ Präsentationen</b>; Themen nach Wahl</li>
         </ol>
       </section>
@@ -219,7 +214,7 @@
       </section>
 
       <section>
-        <h1><a href="https://www.xamarinhelp.com/xamarin-forms-debugging-webview/">Debugging the Webview</a></h1>
+        <h1><a href="https://www.xamarinhelp.com/xamarin-forms-debugging-webview/">Debugging im Webview</a></h1>
         <ul>
           <li><code>WebView.SetWebContentsDebuggingEnabled(true);</code> aufrufen</li>
           <li>In Chrome, <code>chrome://inspect/#devices</code> in einem Tab öffnen</li>
