@@ -1,5 +1,4 @@
 ﻿using MLZ2025.Core.Model;
-using MLZ2025.Core.Services;
 using MLZ2025.Core.ViewModel;
 using MLZ2025.Shared.Model;
 using MLZ2025.Shared.Services;
@@ -125,6 +124,7 @@ public class MainViewModelTests : TestsBase
     [Test]
     public void TestAddItem()
     {
+        Application.Current = new App();
         var serviceProvider = CreateServiceProvider();
         var viewModel = serviceProvider.GetRequiredService<MainViewModel>();
         viewModel.FirstName = "Item 1";
@@ -132,7 +132,10 @@ public class MainViewModelTests : TestsBase
         viewModel.AddCommand.Execute(null);
 
         Assert.That(_testDialogService.LastMessage, Is.EqualTo(""));
-        Assert.That(viewModel.Items.Last(), Is.EqualTo(null));
+
+        var newViewAddress = viewModel.Items.Last();
+
+        Assert.That(newViewAddress.FirstName, Is.EqualTo(viewModel.FirstName));
     }
 
     [Test]
