@@ -7,7 +7,7 @@
     Title="MLZ2026">
 
     <ShellContent
-        Title="Home"
+        Title="Casa"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
