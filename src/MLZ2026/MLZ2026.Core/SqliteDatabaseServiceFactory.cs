@@ -2,8 +2,12 @@ namespace MLZ2026.Core;
 
 public class SqliteDatabaseServiceFactory : IDatabaseServiceFactory
 {
-    public IDatabaseService CreateService()
+    public async Task<IDatabaseService> CreateService()
     {
-        return new SqliteDatabaseService();
+        var result = new SqliteDatabaseService();
+
+        await result.EnsureTablesExist();
+
+        return result;
     }
 }

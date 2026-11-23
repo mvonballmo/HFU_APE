@@ -4,16 +4,14 @@ namespace MLZ2026.Core;
 
 public class SqliteDatabaseService : IDatabaseService
 {
-    private readonly SQLiteConnection _connection;
+    private readonly SQLiteAsyncConnection _connection;
 
     public SqliteDatabaseService()
     {
         _connection = CreateConnection();
-
-        EnsureTablesExist();
     }
 
-    private void EnsureTablesExist()
+    public async Task EnsureTablesExist()
     {
         var tableExists = _connection.TableMappings.Any(
             m => m.TableName.Equals(nameof(TodoItem), StringComparison.InvariantCultureIgnoreCase)
@@ -21,8 +19,7 @@ public class SqliteDatabaseService : IDatabaseService
 
         if (!tableExists)
         {
-            // TODO use Async?
-            _connection.CreateTable<TodoItem>();
+            await _connection.CreateTableAsync<TodoItem>();
         }
     }
 
@@ -31,59 +28,43 @@ public class SqliteDatabaseService : IDatabaseService
         return _connection.TableMappings.Select(t => t.TableName);
     }
 
-    public int Insert(TodoItem item)
+    public Task<int> Insert(TodoItem item)
     {
-        return _connection.Insert(item);
+        return _connection.InsertAsync(item);
     }
 
-    public IEnumerable<TodoItem> GetItems()
+    public AsyncTableQuery<TodoItem> GetItems()
     {
         return _connection.Table<TodoItem>();
     }
 
-    public void DeleteAll()
+    public Task<int> DeleteAll()
     {
-        _connection.DeleteAll<TodoItem>();
+        return _connection.DeleteAllAsync<TodoItem>();
     }
 
-    public void Delete(TodoItem item)
+    public Task<int> Delete(TodoItem item)
     {
-        _connection.Delete(item);
+        return _connection.DeleteAsync(item);
     }
 
-    public void Update(TodoItem todoItem)
+    public Task<int> Update(TodoItem todoItem)
     {
-        _connection.Update(todoItem);
+        return _connection.UpdateAsync(todoItem);
     }
 
-    public void Dispose()
+    private static SQLiteAsyncConnection CreateConnection()
     {
-        _connection.Dispose();
-    }
-
-    private static SQLiteConnection CreateConnection()
-    {
-        SQLiteConnection? connection = null;
-        try
+        // TODO Do this somewhere else
+        if (!Directory.Exists(DatabaseFolder))
         {
-            // TODO Do this somewhere else
-            if (!Directory.Exists(DatabaseFolder))
-            {
-                Directory.CreateDirectory(DatabaseFolder);
-            }
+            Directory.CreateDirectory(DatabaseFolder);
+        }
 
-            // TODO inject settings
-            var options = new SQLiteConnectionString(Path.Join(DatabaseFolder, "MLZ2026.db"), true);
-            connection = new SQLiteConnection(options);
-            
-            return connection;
-        }
-        catch
-        {
-            connection?.Dispose();
-            
-            throw;
-        }
+        // TODO inject settings
+        var options = new SQLiteConnectionString(Path.Join(DatabaseFolder, "MLZ2026.db"), true);
+
+        return new SQLiteAsyncConnection(options);
     }
 
     private static readonly string DatabaseFolder =

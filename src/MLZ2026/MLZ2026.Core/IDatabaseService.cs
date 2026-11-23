@@ -1,17 +1,21 @@
+using SQLite;
+
 namespace MLZ2026.Core;
 
-public interface  IDatabaseService : IDisposable
+public interface  IDatabaseService
 {
     IEnumerable<string> GetTables();
     
     // TODO Can we make this generic?
-    int Insert(TodoItem item);
+    Task<int> Insert(TodoItem item);
     
-    IEnumerable<TodoItem> GetItems();
+    AsyncTableQuery<TodoItem> GetItems();
     
-    void DeleteAll();
+    Task<int> DeleteAll();
     
-    void Delete(TodoItem item);
+    Task<int> Delete(TodoItem item);
     
-    void Update(TodoItem todoItem);
+    Task<int> Update(TodoItem todoItem);
+    
+    Task EnsureTablesExist();
 }

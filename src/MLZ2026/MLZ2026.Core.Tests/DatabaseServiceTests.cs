@@ -3,9 +3,9 @@ namespace MLZ2026.Core.Tests;
 public sealed class DatabaseServiceTests
 {
     [Test]
-    public void TestTablesAreCreatedAtConstruction()
-    {
-        using var databaseService = CreateDatabaseService();
+    public async Task TestTablesAreCreatedAtConstruction()
+    { 
+        var databaseService = await CreateDatabaseService();
 
         var tables = databaseService.GetTables().ToList();
 
@@ -13,44 +13,44 @@ public sealed class DatabaseServiceTests
     }    
 
     [Test]
-    public void TestAddData()
+    public async Task TestAddData()
     {
-        using var databaseService = CreateDatabaseService();
+        var databaseService = await CreateDatabaseService();
 
-        databaseService.DeleteAll();
+        await databaseService.DeleteAll();
 
         TodoItem item = new()
         {
             Title = "Test"
         };
         
-        var itemCountInserted = databaseService.Insert(item);
+        var itemCountInserted = await databaseService.Insert(item);
         
         Assert.That(itemCountInserted, Is.EqualTo(1));
 
-        var items = databaseService.GetItems().ToList();
+        var items = await databaseService.GetItems().ToListAsync();
 
         Assert.That(items, Has.Count.EqualTo(1));
         Assert.That(items[0].Title, Is.EqualTo("Test"));
     }
 
     [Test]
-    public void TestUpdateData()
+    public async Task TestUpdateData()
     {
-        using var databaseService = CreateDatabaseService();
+        var databaseService = await CreateDatabaseService();
 
-        databaseService.DeleteAll();
+        await databaseService.DeleteAll();
 
         TodoItem item = new()
         {
             Title = "Test"
         };
         
-        var itemCountInserted = databaseService.Insert(item);
+        var itemCountInserted = await databaseService.Insert(item);
         
         Assert.That(itemCountInserted, Is.EqualTo(1));
 
-        var items = databaseService.GetItems().ToList();
+        var items = await databaseService.GetItems().ToListAsync();
 
         Assert.That(items, Has.Count.EqualTo(1));
         var todoItem = items[0];
@@ -58,40 +58,40 @@ public sealed class DatabaseServiceTests
         
         todoItem.Title = "Updated Test";
         
-        databaseService.Update(todoItem);
+        await databaseService.Update(todoItem);
     }
 
     [Test]
-    public void TestDeleteData()
+    public async Task TestDeleteData()
     {
-        using var databaseService = CreateDatabaseService();
+        var databaseService = await CreateDatabaseService();
 
-        databaseService.DeleteAll();
+        await databaseService.DeleteAll();
 
         TodoItem item = new()
         {
             Title = "Test"
         };
         
-        var itemCountInserted = databaseService.Insert(item);
+        var itemCountInserted = await databaseService.Insert(item);
         
         Assert.That(itemCountInserted, Is.EqualTo(1));
 
-        var items = databaseService.GetItems().ToList();
+        var items = await databaseService.GetItems().ToListAsync();
 
         Assert.That(items, Has.Count.EqualTo(1));
         Assert.That(items[0].Title, Is.EqualTo("Test"));
         
-        databaseService.Delete(item);
+        await databaseService.Delete(item);
     }
     
-    private static IDatabaseService CreateDatabaseService()
+    private static async Task<IDatabaseService> CreateDatabaseService()
     {
         var provider = new ServiceCollection()
             .AddTestCore()
             .BuildServiceProvider();
 
-        return provider.GetRequiredService<IDatabaseServiceFactory>().CreateService();
+        return await provider.GetRequiredService<IDatabaseServiceFactory>().CreateService();
     }
 
 }
