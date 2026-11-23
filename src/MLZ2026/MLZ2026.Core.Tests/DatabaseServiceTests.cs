@@ -5,7 +5,7 @@ public sealed class DatabaseServiceTests
     [Test]
     public void TestTablesAreCreatedAtConstruction()
     {
-        var databaseService = CreateDatabaseService();
+        using var databaseService = CreateDatabaseService();
 
         var tables = databaseService.GetTables().ToList();
 
@@ -15,7 +15,7 @@ public sealed class DatabaseServiceTests
     [Test]
     public void TestAddData()
     {
-        var databaseService = CreateDatabaseService();
+        using var databaseService = CreateDatabaseService();
 
         databaseService.DeleteAll();
 
@@ -37,7 +37,7 @@ public sealed class DatabaseServiceTests
     [Test]
     public void TestUpdateData()
     {
-        var databaseService = CreateDatabaseService();
+        using var databaseService = CreateDatabaseService();
 
         databaseService.DeleteAll();
 
@@ -64,7 +64,7 @@ public sealed class DatabaseServiceTests
     [Test]
     public void TestDeleteData()
     {
-        var databaseService = CreateDatabaseService();
+        using var databaseService = CreateDatabaseService();
 
         databaseService.DeleteAll();
 

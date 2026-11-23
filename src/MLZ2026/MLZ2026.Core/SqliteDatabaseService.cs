@@ -4,62 +4,61 @@ namespace MLZ2026.Core;
 
 public class SqliteDatabaseService : IDatabaseService
 {
+    private readonly SQLiteConnection _connection;
+
     public SqliteDatabaseService()
     {
-        using var connection = CreateConnection();
+        _connection = CreateConnection();
 
-        var tableExists = connection.TableMappings.Any(
+        EnsureTablesExist();
+    }
+
+    private void EnsureTablesExist()
+    {
+        var tableExists = _connection.TableMappings.Any(
             m => m.TableName.Equals(nameof(TodoItem), StringComparison.InvariantCultureIgnoreCase)
         );
-        
+
         if (!tableExists)
         {
             // TODO use Async?
-            connection.CreateTable<TodoItem>();
+            _connection.CreateTable<TodoItem>();
         }
     }
 
     public IEnumerable<string> GetTables()
     {
-        // TODO Make this a local field
-        using var connection = CreateConnection();
-        
-        return connection.TableMappings.Select(t => t.TableName).ToArray();
+        return _connection.TableMappings.Select(t => t.TableName);
     }
 
     public int Insert(TodoItem item)
     {
-        using var connection = CreateConnection();
-        
-        return connection.Insert(item);
+        return _connection.Insert(item);
     }
 
     public IEnumerable<TodoItem> GetItems()
     {
-        using var connection = CreateConnection();
-
-        return connection.Table<TodoItem>().ToList();
+        return _connection.Table<TodoItem>();
     }
 
     public void DeleteAll()
     {
-        using var connection = CreateConnection();
-
-        connection.DeleteAll<TodoItem>();
+        _connection.DeleteAll<TodoItem>();
     }
 
     public void Delete(TodoItem item)
     {
-        using var connection = CreateConnection();
-        
-        connection.Delete(item);
+        _connection.Delete(item);
     }
 
     public void Update(TodoItem todoItem)
     {
-        using var connection = CreateConnection();
-        
-        connection.Update(todoItem);
+        _connection.Update(todoItem);
+    }
+
+    public void Dispose()
+    {
+        _connection.Dispose();
     }
 
     private static SQLiteConnection CreateConnection()

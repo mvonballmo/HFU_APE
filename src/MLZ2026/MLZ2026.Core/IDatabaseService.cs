@@ -1,6 +1,6 @@
 namespace MLZ2026.Core;
 
-public interface  IDatabaseService
+public interface  IDatabaseService : IDisposable
 {
     IEnumerable<string> GetTables();
     
