@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace MLZ2026.Core.Tests;
+namespace MLZ2026.Core;
 
 class ExternalDataService : IExternalDataService
 {
@@ -11,17 +11,17 @@ class ExternalDataService : IExternalDataService
         _httpClientFactory = httpClientFactory;
     }
 
-    public async Task<TodoItem[]?> GetTodoItems()
+    public async Task<TodoItem[]> GetTodoItems()
     {
         var httpClient = _httpClientFactory.CreateClient();
         
         // Stop restricting to user id = 3
-        string userId = "3";
+        const string userId = "3";
         
-        TodoItem[]? todos = await httpClient.GetFromJsonAsync<TodoItem[]>(
+        var todos = await httpClient.GetFromJsonAsync<TodoItem[]>(
             $"https://jsonplaceholder.typicode.com/todos?userId={userId}",
             new JsonSerializerOptions(JsonSerializerDefaults.Web));
 
-        return todos;
+        return todos ?? throw new InvalidOperationException("Could not retrieve todos.");
     }
 }
