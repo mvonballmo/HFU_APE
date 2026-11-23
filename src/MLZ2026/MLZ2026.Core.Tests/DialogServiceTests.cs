@@ -1,7 +1,7 @@
 ﻿namespace MLZ2026.Core.Tests;
 
 [TestFixture]
-public sealed class DialogServiceTests
+public sealed class DialogServiceTests : TestsBase
 {
     [Test]
     public async Task TestShow()
@@ -23,11 +23,6 @@ public sealed class DialogServiceTests
 
     private static IDialogService CreateDialogService()
     {
-        var provider = new ServiceCollection()
-            .AddTestCore()
-            .BuildServiceProvider();
-
-        var dialogService = provider.GetRequiredService<IDialogService>();
-        return dialogService;
+        return CreateService<IDialogService>();
     }
 }

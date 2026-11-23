@@ -5,7 +5,7 @@ public static class TestCoreServiceProviderExtensions
     public static IServiceCollection AddTestCore(this IServiceCollection serviceCollection)
     {
         return serviceCollection
-            .AddSingleton<IDatabaseServiceFactory, SqliteDatabaseServiceFactory>()
+            .AddCore()
             .AddSingleton<IDialogService, TestDialogService>();
     }
 }

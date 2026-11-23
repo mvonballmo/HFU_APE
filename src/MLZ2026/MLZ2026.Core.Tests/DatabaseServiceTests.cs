@@ -1,6 +1,6 @@
 namespace MLZ2026.Core.Tests;
 
-public sealed class DatabaseServiceTests
+public sealed class DatabaseServiceTests : TestsBase
 {
     [Test]
     public async Task TestTablesAreCreatedAtConstruction()
@@ -84,14 +84,4 @@ public sealed class DatabaseServiceTests
         
         await databaseService.Delete(item);
     }
-    
-    private static async Task<IDatabaseService> CreateDatabaseService()
-    {
-        var provider = new ServiceCollection()
-            .AddTestCore()
-            .BuildServiceProvider();
-
-        return await provider.GetRequiredService<IDatabaseServiceFactory>().CreateService();
-    }
-
 }
