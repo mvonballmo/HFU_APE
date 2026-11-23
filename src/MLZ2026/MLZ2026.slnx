@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MLZ2026.Core.Tests/MLZ2026.Core.Tests.csproj" />
+  <Project Path="MLZ2026.Core/MLZ2026.Core.csproj" />
+  <Project Path="MLZ2026.Maui.App/MLZ2026.Maui.App.csproj" />
+</Solution>
