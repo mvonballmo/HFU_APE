@@ -19,4 +19,8 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MLZ2026.Core\MLZ2026.Core.csproj" />
+  </ItemGroup>
+
 </Project>
