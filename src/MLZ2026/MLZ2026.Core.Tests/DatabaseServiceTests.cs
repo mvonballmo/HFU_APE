@@ -1,6 +1,6 @@
 namespace MLZ2026.Core.Tests;
 
-public sealed class DatabaseServiceTests : TestsBase
+public sealed class DatabaseServiceTests : DatabaseTestsBase
 {
     [Test]
     public async Task TestTablesAreCreatedAtConstruction()
