@@ -2,9 +2,16 @@ using SQLite;
 
 namespace MLZ2026.Core;
 
-public interface IDatabaseService
+public interface  IDatabaseService
 {
     IEnumerable<string> GetTables();
+    
+    // TODO Can we make this generic?
+    int Insert(TodoItem item);
+    
+    IEnumerable<TodoItem> GetItems();
+    
+    void DeleteAll();
 }
 
 public class TodoItem
@@ -12,7 +19,7 @@ public class TodoItem
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     
-    public required string Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 }
 
 public class DatabaseService : IDatabaseService
@@ -34,9 +41,31 @@ public class DatabaseService : IDatabaseService
 
     public IEnumerable<string> GetTables()
     {
+        // TODO Make this a local field
         using var connection = CreateConnection();
         
-        return connection.TableMappings.Select(t => t.TableName);
+        return connection.TableMappings.Select(t => t.TableName).ToArray();
+    }
+
+    public int Insert(TodoItem item)
+    {
+        using var connection = CreateConnection();
+        
+        return connection.Insert(item);
+    }
+
+    public IEnumerable<TodoItem> GetItems()
+    {
+        using var connection = CreateConnection();
+
+        return connection.Table<TodoItem>().ToList();
+    }
+
+    public void DeleteAll()
+    {
+        using var connection = CreateConnection();
+
+        connection.DeleteAll<TodoItem>();
     }
 
     private static SQLiteConnection CreateConnection()
