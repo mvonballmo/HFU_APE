@@ -91,7 +91,7 @@ public sealed class DatabaseServiceTests
             .AddTestCore()
             .BuildServiceProvider();
 
-        return provider.GetRequiredService<IDatabaseService>();
+        return provider.GetRequiredService<IDatabaseServiceFactory>().CreateService();
     }
 
 }

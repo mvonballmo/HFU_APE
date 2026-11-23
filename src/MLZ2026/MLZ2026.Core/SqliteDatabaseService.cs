@@ -2,9 +2,9 @@ using SQLite;
 
 namespace MLZ2026.Core;
 
-public class DatabaseService : IDatabaseService
+public class SqliteDatabaseService : IDatabaseService
 {
-    public DatabaseService()
+    public SqliteDatabaseService()
     {
         using var connection = CreateConnection();
 
